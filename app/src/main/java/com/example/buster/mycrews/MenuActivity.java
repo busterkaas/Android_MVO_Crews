@@ -7,11 +7,12 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.buster.mycrews.Controller.UserController;
+
 /**
  * Created by RlxCw on 17-05-2016.
  */
 public class MenuActivity extends AppCompatActivity{
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
