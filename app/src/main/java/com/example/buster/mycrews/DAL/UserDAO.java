@@ -43,7 +43,7 @@ public class UserDAO {
                     User user = new User(d.getString("_id"), d.getString("name"), d.getString("firstName"), d.getString("lastName"), d.getInt("phoneNumber"));
                     m_users.add(user);
                 }catch (JSONException e){
-
+                    Log.d(TAG, e.getMessage());
                 }
             }
 
