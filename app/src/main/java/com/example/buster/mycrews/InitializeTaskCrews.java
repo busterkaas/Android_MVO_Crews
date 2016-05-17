@@ -36,6 +36,6 @@ public class InitializeTaskCrews extends AsyncTask<
     // this method is invoked by the GUI thread
     @Override
     protected void onPostExecute(final ArrayList<Crew> crews) {
-        m_context.doDaCrewShit(crews);
+        m_context.instantiateListView(crews);
     }
 }

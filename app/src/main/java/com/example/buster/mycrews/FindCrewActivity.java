@@ -30,19 +30,16 @@ public class FindCrewActivity extends AppCompatActivity {
         crews = new ArrayList<>();
         InitializeTaskCrews tast = new InitializeTaskCrews(this);
         tast.execute(new CrewDAO());
-
-
-
-
     }
-    private void doDaMagic(int pos){
+
+    private void crewDetails(int pos){
         Intent intent = new Intent(FindCrewActivity.this, CrewProfileActivity.class);
         Crew crew = crews.get(pos);
         intent.putExtra("crew", crew);
         startActivity(intent);
     }
 
-    public void doDaCrewShit(ArrayList<Crew> crews){
+    public void instantiateListView(ArrayList<Crew> crews){
 
         this.crews = crews;
 
@@ -52,7 +49,7 @@ public class FindCrewActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                doDaMagic(position);
+                crewDetails(position);
             }
         });
 
