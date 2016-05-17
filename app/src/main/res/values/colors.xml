@@ -4,4 +4,5 @@
     <color name="colorPrimaryDark">#000000</color>
     <color name="colorAccent">#ff471a</color>
     <color name="mvoOrange">#ff471a</color>
+    <color name="mvoWhite">#FFFFFF</color>
 </resources>

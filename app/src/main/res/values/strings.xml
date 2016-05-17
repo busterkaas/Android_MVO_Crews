@@ -3,4 +3,15 @@
     <string name="login_name">Email</string>
     <string name="password_name">Password</string>
     <string name="login_btn">Login</string>
+
+    <string name="tvUsername">User Name : </string>
+    <string name="tvFirstname">First Name : </string>
+    <string name="tvLastname">Last Name : </string>
+    <string name="tvEmail">E-mail Address : </string>
+
+    <string name="tvEditInfo">EDIT PROFILE SETTINGS...</string>
+    <string name="etUsername">User Name : db data goes here</string>
+    <string name="etFirstname">First Name : db data goes here</string>
+    <string name="etLastname">Last Name : db data goes here</string>
+    <string name="etEmail">Email Address : db data goes here</string>
 </resources>
