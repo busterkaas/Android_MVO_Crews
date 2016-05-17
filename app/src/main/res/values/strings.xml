@@ -3,4 +3,8 @@
     <string name="login_name">Email</string>
     <string name="password_name">Password</string>
     <string name="login_btn">Login</string>
+    <string name="logout">Logout</string>
+    <string name="allCrews">All Crews</string>
+    <string name="myCrews">My Crews</string>
+    <string name="myProfile">My Profile</string>
 </resources>
