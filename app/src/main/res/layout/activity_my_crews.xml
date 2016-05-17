@@ -7,11 +7,104 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@drawable/bg"
     tools:context="com.example.buster.mycrews.MyCrewsActivity">
 
+    <TextView
+        android:id="@+id/myCrews"
+        android:text="My Crews"
+        android:typeface="sans"
+        android:textSize="40dp"
+        android:textColor="#ff471a"
+        android:textStyle="bold"
+
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:id="@+id/crew1"
+        android:orientation="vertical"
+        android:layout_below="@id/myCrews"
+        android:layout_height="125dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_centerHorizontal="true"
+        android:layout_width="275dp"
+        android:clickable="true"
+        android:background="@drawable/image_rounded_corner">
+
+        <TextView
+            android:layout_height="30dp"
+            android:layout_width="match_parent"
+            android:text="Wut"
+            android:textColor="#ff471a"
+            android:textSize="25dp"
+            android:textAlignment="center"
+            />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/nolologo"/>
 
 
+    </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/crew2"
+        android:orientation="vertical"
+        android:layout_below="@id/crew1"
+        android:layout_height="125dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_centerHorizontal="true"
+        android:layout_width="275dp"
+        android:clickable="true"
+        android:background="@drawable/image_rounded_corner">
+
+        <TextView
+            android:layout_height="30dp"
+            android:layout_width="match_parent"
+            android:text="Wut"
+            android:textColor="#ff471a"
+            android:textSize="25dp"
+            android:textAlignment="center"
+            />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/nolologo"/>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/crew3"
+        android:orientation="vertical"
+        android:layout_below="@id/crew2"
+        android:layout_height="125dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_centerHorizontal="true"
+        android:layout_width="275dp"
+        android:clickable="true"
+        android:background="@drawable/image_rounded_corner">
+
+        <TextView
+            android:layout_height="30dp"
+            android:layout_width="match_parent"
+            android:text="Wut"
+            android:textColor="#ff471a"
+            android:textSize="25dp"
+            android:textAlignment="center"
+            />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/nolologo"/>
+
+
+    </LinearLayout>
 
 
 </RelativeLayout>

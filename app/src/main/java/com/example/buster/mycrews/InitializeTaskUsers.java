@@ -34,6 +34,6 @@ public class InitializeTaskUsers extends AsyncTask<
     // this method is invoked by the GUI thread
     @Override
     protected void onPostExecute(final ArrayList<User> users) {
-
+        m_context.initializeUsers(users);
     }
 }
