@@ -7,6 +7,33 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@drawable/bg"
     tools:context="com.example.buster.mycrews.CrewProfileActivity">
+
+    <TextView
+        android:id="@+id/myCrewName"
+        android:text="CREW NAME"
+        android:typeface="sans"
+        android:textSize="40dp"
+        android:textColor="#ff471a"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <ImageView
+        android:id="@+id/myCrewImage"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/myCrewName"
+        android:layout_height="170dp"
+        android:layout_width="match_parent"
+        android:src="@drawable/nolologo"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:layout_below="@+id/myCrewImage"
+        android:background="#ff471a"/>
+
+
 
 </RelativeLayout>
