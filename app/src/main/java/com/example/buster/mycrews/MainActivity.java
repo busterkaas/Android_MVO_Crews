@@ -37,9 +37,6 @@ public class MainActivity extends AppCompatActivity {
 
         inputSettings();
         setImageActionBar();
-
-
-
     }
 
     void setImageActionBar(){
@@ -47,12 +44,9 @@ public class MainActivity extends AppCompatActivity {
         actionbar.setDisplayShowHomeEnabled(true);
         actionbar.setIcon(R.drawable.newlogo);
         actionbar.isHideOnContentScrollEnabled();
-
-
     }
 
     void inputSettings(){
-
         //Setup textfields
         etUsername = (EditText)findViewById(R.id.etLoginName);
         etPassword = (EditText)findViewById(R.id.etLoginPassword);
@@ -100,10 +94,12 @@ public class MainActivity extends AppCompatActivity {
             userController = UserController.getInstance();
             userController.userLogin(user);
 
-            Log.d("MOJN", user.getFirstName());
+            Log.d("MOJN", "My id: " +user.getId());
 
             Intent intent = new Intent(MainActivity.this, FindCrewActivity.class);
             startActivity(intent);
+        }else{
+            Toast.makeText(getApplicationContext(), "Invalid username or password", Toast.LENGTH_LONG).show();
         }
     }
 
