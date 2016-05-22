@@ -66,4 +66,8 @@ public class FindCrewListViewAdapter extends BaseAdapter {
 
         return view;
     }
+
+    public void searchCrewList(ArrayList<Crew> crews){
+        this.crews = crews;
+    }
 }

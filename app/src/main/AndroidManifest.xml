@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.buster.mycrews">
+    package="com.example.buster.mycrews" >
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
         android:label=""
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        android:theme="@style/AppTheme" >
+        <activity android:name=".MainActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -17,12 +20,7 @@
         <activity android:name=".MyCrewsActivity" />
         <activity android:name=".FindCrewActivity" />
         <activity android:name=".MyProfileActivity" />
-        <activity android:name=".CrewProfileActivity"></activity>
+        <activity android:name=".CrewProfileActivity" />
     </application>
 
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
 </manifest>
-
-

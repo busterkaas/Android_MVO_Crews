@@ -3,7 +3,7 @@ package com.example.buster.mycrews;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class MyProfileActivity extends AppCompatActivity {
+public class MyProfileActivity extends MenuActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
