@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import com.example.buster.mycrews.BE.Crew;
 
-public class CrewProfileActivity extends AppCompatActivity {
+public class CrewProfileActivity extends MenuActivity {
 
     Crew crew;
     String LOGTAG = "crewProfile";

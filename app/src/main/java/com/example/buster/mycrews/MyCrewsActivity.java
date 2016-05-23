@@ -12,7 +12,7 @@ import com.example.buster.mycrews.BE.User;
 
 import org.w3c.dom.Text;
 
-public class MyCrewsActivity extends AppCompatActivity {
+public class MyCrewsActivity extends MenuActivity {
 
     LinearLayout crew1;
     TextView crewName1;
