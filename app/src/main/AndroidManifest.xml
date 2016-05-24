@@ -9,8 +9,8 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
-        android:icon="@drawable/app_icon"
         android:allowBackup="true"
+        android:icon="@drawable/app_icon"
         android:label=""
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
@@ -26,6 +26,9 @@
         <activity android:name=".UI.User.MyProfileActivity" />
         <activity android:name=".UI.Crew.CrewProfileActivity" />
         <activity android:name=".UI.User.MyEditProfileActivity" />
+        <activity android:name=".UI.Crew.CrewChatActivity" />
+        <activity android:name=".UI.Crew.CrewGamesActivity" />
+        <activity android:name=".UI.Crew.CrewLeaderActivity"></activity>
     </application>
 
 </manifest>

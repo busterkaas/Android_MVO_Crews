@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/crewAct"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
@@ -25,7 +26,7 @@
         android:id="@+id/myCrewImage"
         android:layout_marginTop="20dp"
         android:layout_below="@+id/myCrewName"
-        android:layout_height="150dp"
+        android:layout_height="130dp"
         android:layout_width="match_parent"
         android:src="@drawable/nolologo"/>
     <View
@@ -56,33 +57,81 @@
         android:textColor="@color/mvoWhite"/>
 
     <TextView
-        android:id="@+id/txtGameSuggestion"
+        android:id="@+id/txtCrewmembers"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Game suggestions:"
+        android:text="Crew members:"
         android:layout_marginTop="20dp"
         android:layout_below="@+id/txtCL"
         android:textColor="@color/mvoWhite"
         android:textStyle="bold"/>
-
-
-    <LinearLayout
+    <TextView
+        android:id="@+id/tvCrewMembers"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true">
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="110dp"
+        android:layout_alignRight="@+id/txtCrewmembers"
+        android:layout_below="@+id/myCrewLeader"
+        android:textColor="@color/mvoWhite"/>
+
+    <Button
+        android:id="@+id/btnChat"
+        android:layout_marginTop="20dp"
+        android:text="Go to chat"
+        android:background="@color/colorPrimary"
+        android:textColor="@color/mvoOrange"
+        android:layout_below="@+id/txtCrewmembers"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/btnGameSug"
+        android:layout_marginTop="10dp"
+        android:background="@color/colorPrimary"
+        android:textColor="@color/mvoOrange"
+        android:text="Game suggestions"
+        android:layout_below="@+id/btnChat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/btnAdmin"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_width="70dp"
+        android:layout_height="30dp"
+        android:text="LEADER"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        android:layout_marginLeft="35dp"
+        android:background="@color/mvoOrange" />
+
+
+
+    <TextView
+        android:id="@+id/btnAplytxt"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:text="Apply for membership"
+        android:layout_alignParentRight="true"
+        android:layout_above="@+id/btnAply"
+        android:textColor="@color/mvoWhite"
+        android:layout_marginBottom="10dp"
+        android:textStyle="bold"/>
 
         <Button
             android:id="@+id/btnAply"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Aply for membership"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_width="70dp"
+            android:layout_height="30dp"
+            android:text="Apply"
             android:textAlignment="center"
-            android:textSize="12dp"
             android:textStyle="bold"
+            android:layout_marginRight="35dp"
             android:background="@color/mvoOrange" />
 
-    </LinearLayout>
 
 
 </RelativeLayout>

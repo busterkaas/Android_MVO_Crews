@@ -1,8 +1,10 @@
 package com.example.buster.mycrews.UI.User;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -19,10 +21,14 @@ import com.example.buster.mycrews.Controller.UserController;
 import com.example.buster.mycrews.InitializeTasks.InitializeTaskUserCrews;
 import com.example.buster.mycrews.MenuActivity;
 import com.example.buster.mycrews.R;
+import com.example.buster.mycrews.UI.Crew.CrewProfileActivity;
+import com.example.buster.mycrews.UI.Crew.FindCrewActivity;
 
 import org.w3c.dom.Text;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -37,7 +43,7 @@ public class MyCrewsActivity extends MenuActivity {
     ImageView crewImage2;
     ArrayList<ImageView> imageViews = new ArrayList<>();
     ArrayList<TextView> textViews = new ArrayList<>();
-    Bitmap mIcon_val;
+    ArrayList<Crew> crews;
     LinearLayout crew3;
     TextView crewName3;
     ImageView crewImage3;
@@ -45,6 +51,64 @@ public class MyCrewsActivity extends MenuActivity {
     CrewManager crewManager;
     UserController userController;
 
+    public void downloadImage(ImageView imgView, String url) {
+
+        ImageDownloader task = new ImageDownloader();
+        Bitmap myImage;
+
+        try {
+            myImage = task.execute(url).get();
+
+            imgView.setImageBitmap(myImage);
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+
+        }
+
+        Log.i("Interaction", "Button Tapped");
+
+    }
+
+
+    public class ImageDownloader extends AsyncTask<String, Void, Bitmap> {
+
+
+        @Override
+        protected Bitmap doInBackground(String... urls) {
+
+            try {
+
+                URL url = new URL(urls[0]);
+
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+
+                connection.connect();
+
+                InputStream inputStream = connection.getInputStream();
+
+                Bitmap myBitmap = BitmapFactory.decodeStream(inputStream);
+
+                return myBitmap;
+
+
+            } catch (MalformedURLException e) {
+
+                e.printStackTrace();
+
+            } catch (IOException e) {
+
+                e.printStackTrace();
+
+            }
+
+            return null;
+
+        }
+
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,19 +145,19 @@ public class MyCrewsActivity extends MenuActivity {
         crew1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToCrew();
+                goToCrew(0);
             }
         });
         crew2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToCrew();
+                goToCrew(1);
             }
         });
         crew3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToCrew();
+                goToCrew(2);
             }
         });
     }
@@ -103,18 +167,29 @@ public class MyCrewsActivity extends MenuActivity {
         task.execute(crewManager);
     }
 
+    void goToCrew(int crew){
+        Intent intent;
+        if(crews.size()>= crew+1) {
+            intent = new Intent(MyCrewsActivity.this, CrewProfileActivity.class);
+            intent.putExtra("crew", crews.get(crew));
+            startActivity(intent);
+        }else{
+            intent = new Intent(MyCrewsActivity.this, FindCrewActivity.class);
+            startActivity(intent);
+        }
 
 
-
-    void goToCrew(){
-        Toast.makeText(MyCrewsActivity.this, "Hubba", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(MyCrewsActivity.this, "!", Toast.LENGTH_SHORT).show();
     }
 
+
     public void instantiateUserCrews(ArrayList<Crew> crews) {
+        this.crews = crews;
         for (int i = 0; i < crews.size(); i++){
 
 
                 textViews.get(i).setText(crews.get(i).getCrewName());
+                downloadImage(imageViews.get(i), crews.get(i).getCrewImgUrl());
 
         }
     }

@@ -38,16 +38,17 @@
             android:id="@+id/crewName1"
             android:layout_height="30dp"
             android:layout_width="match_parent"
-            android:text="Wut"
+            android:text="Empty"
             android:textColor="#ff471a"
-            android:textSize="25dp"
+            android:textSize="22dp"
             android:textAlignment="center"
             />
         <ImageView
             android:id="@+id/crewImage1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/nolologo"/>
+            android:layout_width="380px"
+            android:layout_height="260px"
+            android:src="@drawable/nolologo"
+            android:layout_gravity="center" />
 
 
     </LinearLayout>
@@ -68,16 +69,17 @@
             android:id="@+id/crewName2"
             android:layout_height="30dp"
             android:layout_width="match_parent"
-            android:text="Wut"
+            android:text="Empty"
             android:textColor="#ff471a"
-            android:textSize="25dp"
+            android:textSize="22dp"
             android:textAlignment="center"
             />
         <ImageView
             android:id="@+id/crewImage2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/nolologo"/>
+            android:layout_width="380px"
+            android:layout_height="260px"
+            android:src="@drawable/nolologo"
+            android:layout_gravity="center"/>
 
 
     </LinearLayout>
@@ -98,16 +100,17 @@
             android:id="@+id/crewName3"
             android:layout_height="30dp"
             android:layout_width="match_parent"
-            android:text="Wut"
+            android:text="Empty"
             android:textColor="#ff471a"
-            android:textSize="25dp"
+            android:textSize="22dp"
             android:textAlignment="center"
             />
         <ImageView
             android:id="@+id/crewImage3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/nolologo"/>
+
+            android:layout_width="380px"
+            android:layout_height="260px"
+            android:layout_gravity="center"/>
 
 
     </LinearLayout>
