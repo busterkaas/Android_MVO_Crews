@@ -10,7 +10,7 @@
 
     <application
         android:allowBackup="true"
-        android:label=""
+        android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
@@ -20,11 +20,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MyCrewsActivity" />
-        <activity android:name=".FindCrewActivity" />
-        <activity android:name=".CrewProfileActivity" />
-        <activity android:name=".MyProfileActivity" />
-        <activity android:name=".MyEditProfileActivity" />
+        <activity android:name=".UI.User.MyCrewsActivity" />
+        <activity android:name=".UI.Crew.FindCrewActivity" />
+        <activity android:name=".UI.User.MyProfileActivity" />
+        <activity android:name=".UI.Crew.CrewProfileActivity" />
+        <activity android:name=".UI.User.MyEditProfileActivity" />
     </application>
 
 </manifest>

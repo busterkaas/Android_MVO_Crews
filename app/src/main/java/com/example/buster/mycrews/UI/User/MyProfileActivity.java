@@ -1,4 +1,4 @@
-package com.example.buster.mycrews;
+package com.example.buster.mycrews.UI.User;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -14,6 +14,8 @@ import android.widget.Toast;
 
 import com.example.buster.mycrews.BE.User;
 import com.example.buster.mycrews.Controller.UserController;
+import com.example.buster.mycrews.MenuActivity;
+import com.example.buster.mycrews.R;
 
 import java.io.File;
 import java.text.SimpleDateFormat;

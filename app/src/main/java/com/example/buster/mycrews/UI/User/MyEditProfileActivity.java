@@ -1,4 +1,4 @@
-package com.example.buster.mycrews;
+package com.example.buster.mycrews.UI.User;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -8,11 +8,12 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 
 import com.example.buster.mycrews.Controller.UserController;
+import com.example.buster.mycrews.MenuActivity;
+import com.example.buster.mycrews.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.Console;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.HttpURLConnection;
@@ -61,10 +62,6 @@ public class MyEditProfileActivity extends MenuActivity {
     }
 
 
-
-
-
-
     private void updateUserInDatabase() {
         // create a new json object with the updated information
         JSONObject updatedUser = new JSONObject();
@@ -104,11 +101,6 @@ public class MyEditProfileActivity extends MenuActivity {
         }
         out.close();
     }
-
-
-
-
-
 
 
     private void populateEditTexts() {

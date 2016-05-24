@@ -1,11 +1,10 @@
-package com.example.buster.mycrews;
+package com.example.buster.mycrews.InitializeTasks;
 
 import android.os.AsyncTask;
 
 import com.example.buster.mycrews.BE.Crew;
-import com.example.buster.mycrews.BE.User;
-import com.example.buster.mycrews.DAL.CrewDAO;
-import com.example.buster.mycrews.DAL.UserDAO;
+import com.example.buster.mycrews.BLL.Manager.CrewManager;
+import com.example.buster.mycrews.UI.Crew.FindCrewActivity;
 
 import java.util.ArrayList;
 
@@ -13,7 +12,7 @@ import java.util.ArrayList;
  * Created by Buster on 10-05-2016.
  */
 public class InitializeTaskCrews extends AsyncTask<
-        CrewDAO, // collection of PoliceDistricts to execute
+        CrewManager, // collection of Crews to execute
         Void, // to type of progress info
         ArrayList<Crew>> // output of doInBackground
 {
@@ -26,10 +25,14 @@ public class InitializeTaskCrews extends AsyncTask<
     }
 
     @Override
-    protected ArrayList<Crew> doInBackground(CrewDAO... ms) {
+    protected ArrayList<Crew> doInBackground(CrewManager... ms) {
         // params comes from the execute()
-        ms[0].loadAll();
-        return ms[0].getAll();
+        try {
+            ms[0].loadAll();
+            return ms[0].getAll();
+        }catch (Exception e){
+         return null;
+        }
     }
 
     // onPostExecute displays the results of the AsyncTask.doInBackground().

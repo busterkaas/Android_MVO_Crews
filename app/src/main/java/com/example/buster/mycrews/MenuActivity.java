@@ -1,14 +1,14 @@
 package com.example.buster.mycrews;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.example.buster.mycrews.Controller.UserController;
+import com.example.buster.mycrews.UI.Crew.FindCrewActivity;
+import com.example.buster.mycrews.UI.User.MyCrewsActivity;
+import com.example.buster.mycrews.UI.User.MyProfileActivity;
 
 /**
  * Created by RlxCw on 17-05-2016.

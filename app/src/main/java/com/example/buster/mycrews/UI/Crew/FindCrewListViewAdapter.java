@@ -1,4 +1,4 @@
-package com.example.buster.mycrews;
+package com.example.buster.mycrews.UI.Crew;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.buster.mycrews.BE.Crew;
+import com.example.buster.mycrews.R;
 
 import java.util.ArrayList;
 
