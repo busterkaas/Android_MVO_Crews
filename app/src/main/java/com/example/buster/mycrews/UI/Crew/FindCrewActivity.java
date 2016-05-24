@@ -11,6 +11,7 @@ import android.widget.ListView;
 
 import com.example.buster.mycrews.BE.Crew;
 import com.example.buster.mycrews.BE.User;
+import com.example.buster.mycrews.BLL.Manager.CrewManager;
 import com.example.buster.mycrews.DAL.DAL.http.CrewRepository;
 import com.example.buster.mycrews.InitializeTasks.InitializeTaskCrews;
 import com.example.buster.mycrews.MenuActivity;
@@ -28,10 +29,13 @@ public class FindCrewActivity extends MenuActivity {
 
     FindCrewListViewAdapter findCrewListViewAdapter;
 
+    CrewManager crewManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_find_crew);
+
         listView = (ListView) findViewById(R.id.crewList);
         etSearchField = (EditText) findViewById(R.id.etCrewSearch);
         etSearchField.setOnKeyListener(new View.OnKeyListener() {
@@ -45,7 +49,7 @@ public class FindCrewActivity extends MenuActivity {
 
         crews = new ArrayList<>();
         InitializeTaskCrews tast = new InitializeTaskCrews(this);
-        tast.execute(new CrewRepository());
+        tast.execute(crewManager.getInstance());
     }
 
     private void seachCrewsList(){

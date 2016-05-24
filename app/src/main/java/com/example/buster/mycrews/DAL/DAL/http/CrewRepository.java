@@ -80,8 +80,7 @@ ArrayList<Crew> m_crews;
             }
         }
 
-        public ArrayList<Crew> getAll()
-        { return m_crews; }
+
 
 
         /**
@@ -118,7 +117,7 @@ ArrayList<Crew> m_crews;
 
     @Override
     public ArrayList<Crew> readAll() throws Exception {
-        return null;
+        return m_crews;
     }
 
     @Override

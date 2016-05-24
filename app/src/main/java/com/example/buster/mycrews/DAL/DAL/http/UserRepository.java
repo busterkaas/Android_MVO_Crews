@@ -56,8 +56,7 @@ public class UserRepository implements ICRUDRepository<User> {
         }
     }
 
-    public ArrayList<User> getAll()
-    { return m_users; }
+
 
 
     /**
@@ -95,7 +94,7 @@ public class UserRepository implements ICRUDRepository<User> {
 
     @Override
     public ArrayList<User> readAll() throws Exception {
-        return null;
+        return m_users;
     }
 
     @Override
