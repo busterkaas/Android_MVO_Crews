@@ -12,15 +12,19 @@
     <string name="search">Search crew...</string>
 
 
-    <string name="tvUsername">User Name : </string>
-    <string name="tvFirstname">First Name : </string>
-    <string name="tvLastname">Last Name : </string>
-    <string name="tvEmail">E-mail Address : </string>
-
-    <string name="tvEditInfo">EDIT PROFILE SETTINGS…</string>
-    <string name="etUsername">User Name : db data goes here</string>
-    <string name="etFirstname">First Name : db data goes here</string>
-    <string name="etLastname">Last Name : db data goes here</string>
-    <string name="etEmail">Email Address : db data goes here</string>
+    <!-- MyProfileActivity & EditMyProfileActivity -->
+    <string name="tvUsername">db data goes here</string>
+    <string name="tvFirstname">db data goes here</string>
+    <string name="tvLastname">db data goes here</string>
+    <string name="tvPhoneNumber">db data goes here</string>
+    <string name="tvEditInfo">Edit profile settings…</string>
+    <string name="tvUsernameLabel">User Tag</string>
+    <string name="tvFirstNameLabel">First Name</string>
+    <string name="tvLastNameLabel">Last Name</string>
+    <string name="tvPhoneNumberLabel">Phone Number</string>
+    <string name="etUsername">db data goes here</string>
+    <string name="etFirstname">db data goes here</string>
+    <string name="etLastname">db data goes here</string>
+    <string name="etPhoneNumber">db data goes here</string>
 
 </resources>
