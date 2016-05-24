@@ -8,6 +8,9 @@ import com.example.buster.mycrews.R;
 
 public class CrewLeaderActivity extends MenuActivity {
 
+
+    FindCrewListViewAdapter CrewLeaderListViewAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
