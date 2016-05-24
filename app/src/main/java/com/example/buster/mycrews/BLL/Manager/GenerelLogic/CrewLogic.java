@@ -10,19 +10,25 @@ import com.example.buster.mycrews.BE.User;
  */
 public class CrewLogic {
 
-    public CrewLogic(){
+    public CrewLogic() {
 
     }
 
     public boolean isCrewMember(Crew crew, String id) {
 
-        Log.d("logic", " me " + id);
-
         for (User u : crew.getCrewMembers()) {
-            Log.d("logic", " user "+ u.getId());
-            if (id == u.getId()) {
+            if (id.equals(u.getId())) {
                 return true;
             }
+        }
+        return false;
+    }
+
+
+    public boolean isCrewLeader(Crew crew, String id) {
+
+        if (crew.getCrewLeader().getId().equals(id)) {
+            return true;
         }
         return false;
     }

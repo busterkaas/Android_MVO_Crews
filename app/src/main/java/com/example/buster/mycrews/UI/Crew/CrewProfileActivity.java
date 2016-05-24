@@ -1,5 +1,6 @@
 package com.example.buster.mycrews.UI.Crew;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -27,10 +28,15 @@ public class CrewProfileActivity extends MenuActivity {
     UserController userController;
     User me;
     String LOGTAG = "crewProfile";
+
     Button btnApply;
+    Button btnChat;
+    Button btnGame;
+    Button btnLeader;
 
     TextView crewName;
     TextView crewLeader;
+    TextView crewMembers;
     ImageView crewImage;
     CrewLogic crewLogic;
 
@@ -43,10 +49,15 @@ public class CrewProfileActivity extends MenuActivity {
         me = userController.getCurrentUser();
        crewLogic = new CrewLogic();
 
-        crewName = (TextView) findViewById(R.id.myCrewName);
         crewImage = (ImageView) findViewById(R.id.myCrewImage);
+        crewName = (TextView) findViewById(R.id.myCrewName);
         crewLeader = (TextView) findViewById(R.id.myCrewLeader);
+        crewMembers = (TextView) findViewById(R.id.tvCrewMembers);
+
         btnApply = (Button) findViewById(R.id.btnAply);
+        btnChat = (Button) findViewById(R.id.btnChat);
+        btnGame = (Button) findViewById(R.id.btnGameSug);
+        btnLeader = (Button) findViewById(R.id.btnAdmin);
 
 
 
@@ -63,8 +74,16 @@ public class CrewProfileActivity extends MenuActivity {
 
 
         setupButtons();
+        setupText();
 
     }
+
+    private void setupText() {
+        crewLeader.setText(crew.getCrewLeader().getUserName());
+        int membersCount = crew.getCrewMembers().size();
+        crewMembers.setText(membersCount+"/10");
+    }
+
     void setupButtons(){
 
         btnApply.setOnClickListener(new View.OnClickListener() {
@@ -74,12 +93,42 @@ public class CrewProfileActivity extends MenuActivity {
             }
         });
 
+        btnChat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToActivity(CrewChatActivity.class);
+            }
+        });
+        btnGame.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToActivity(CrewGamesActivity.class);
+            }
+        });
+        btnLeader.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToActivity(CrewLeaderActivity.class);
+            }
+        });
+
         if(crewLogic.isCrewMember(crew, me.getId())){
                 btnApply.setClickable(false);
+                btnChat.setClickable(true);
+                btnGame.setClickable(true);
         }else {
             btnApply.setClickable(true);
-
+            btnChat.setClickable(false);
+            btnGame.setClickable(false);
         }
+        if(!crewLogic.isCrewLeader(crew, me.getId())){
+            btnLeader.setVisibility(btnLeader.GONE);
+        }
+    }
+
+    private void goToActivity(Class activity) {
+        Intent intent = new Intent(this, activity);
+        startActivity(intent);
     }
 
     private void applyForMemberShip() {
