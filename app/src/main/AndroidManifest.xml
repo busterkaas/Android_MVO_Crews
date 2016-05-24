@@ -22,8 +22,9 @@
         </activity>
         <activity android:name=".MyCrewsActivity" />
         <activity android:name=".FindCrewActivity" />
-        <activity android:name=".MyProfileActivity" />
         <activity android:name=".CrewProfileActivity" />
+        <activity android:name=".MyProfileActivity" />
+        <activity android:name=".MyEditProfileActivity" />
     </application>
 
 </manifest>

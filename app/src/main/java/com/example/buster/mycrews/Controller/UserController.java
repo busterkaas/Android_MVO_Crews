@@ -11,7 +11,7 @@ public class UserController {
 
     private User user;
 
-    private UserController(){
+    public UserController(){
        user = null;
     }
 

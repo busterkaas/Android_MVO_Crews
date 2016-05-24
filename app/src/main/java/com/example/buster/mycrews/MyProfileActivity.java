@@ -6,38 +6,44 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.buster.mycrews.BE.User;
+import com.example.buster.mycrews.Controller.UserController;
+
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.concurrent.locks.Lock;
 
 public class MyProfileActivity extends MenuActivity {
 
-    private final int CAPTURE_PICTURE_REQUEST_CODE = 100;
+    private UserController userController;
+    private User loggedInUser;
+
+    private final int CAPTURE_PICTURE_REQUEST_CODE = 100, ACTIVITY_EDIT_PROFILE_REQUEST_CODE = 200;
 
     private ImageView imageViewPhoto;
     private ImageButton btnTakePhoto, btnEditProfile;
-    private TextView tvUsername, tvFirstname, tvLastname, tvEmail;
+    private TextView tvUserName, tvFirstName, tvLastName, tvPhoneNumber;
     private File photoFile;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_profile);
 
+        userController = UserController.getInstance();
+        loggedInUser = userController.getCurrentUser();
+
         // Lock the screen orientation to portrait (turn-safe activity)
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         initComponents();
+        populateTextViews();
 
         btnTakePhoto.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,16 +51,42 @@ public class MyProfileActivity extends MenuActivity {
                 takeUserPhoto();
             }
         });
+
+        btnEditProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                editUserProfile();
+            }
+        });
+    }
+
+    private void editUserProfile() {
+        // create intent
+        Intent editUserProfileIntent = new Intent(getApplicationContext(), MyEditProfileActivity.class);
+        // put extras in intent (even though we can already access 'logged in user' globally because of the static singleton class), this is just for show.
+        editUserProfileIntent.putExtra("userName", tvUserName.getText());
+        editUserProfileIntent.putExtra("firstName", tvFirstName.getText());
+        editUserProfileIntent.putExtra("lastName", tvLastName.getText());
+        editUserProfileIntent.putExtra("phoneNumber", tvPhoneNumber.getText());
+        // start the intent
+        startActivityForResult(editUserProfileIntent, ACTIVITY_EDIT_PROFILE_REQUEST_CODE);
+    }
+
+    private void populateTextViews() {
+        tvUserName.setText("" + loggedInUser.getUserName());
+        tvFirstName.setText("" + loggedInUser.getFirstName());
+        tvLastName.setText("" + loggedInUser.getLastName());
+        tvPhoneNumber.setText("" + loggedInUser.getPhoneNumber());
     }
 
     private void initComponents() {
         imageViewPhoto = (ImageView) findViewById(R.id.imageViewPhoto);
         btnTakePhoto = (ImageButton) findViewById(R.id.btnTakePhoto);
         btnEditProfile = (ImageButton) findViewById(R.id.btnEditProfile);
-        tvUsername = (TextView) findViewById(R.id.tvUsername);
-        tvFirstname = (TextView) findViewById(R.id.tvFirstname);
-        tvLastname = (TextView) findViewById(R.id.tvLastname);
-        tvEmail = (TextView) findViewById(R.id.tvEmail);
+        tvUserName = (TextView) findViewById(R.id.tvUsername);
+        tvFirstName = (TextView) findViewById(R.id.tvFirstname);
+        tvLastName = (TextView) findViewById(R.id.tvLastname);
+        tvPhoneNumber = (TextView) findViewById(R.id.tvPhoneNumber);
     }
 
     private void takeUserPhoto() {
@@ -95,9 +127,17 @@ public class MyProfileActivity extends MenuActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        // handle the returned result from 'Camera intent'
         if (requestCode == CAPTURE_PICTURE_REQUEST_CODE && resultCode == RESULT_OK) {
             String filename = photoFile.toString();
             displayPicture(filename);
+        }
+        // handle the returned result from 'edit user profile intent'
+        if (requestCode == ACTIVITY_EDIT_PROFILE_REQUEST_CODE && resultCode == RESULT_OK) {
+            tvUserName.setText("" + data.getStringExtra("userName"));
+            tvFirstName.setText("" + data.getStringExtra("firstName"));
+            tvLastName.setText("" + data.getStringExtra("lastName"));
+            tvPhoneNumber.setText("" + data.getStringExtra("phoneNumber"));
         }
     }
 
