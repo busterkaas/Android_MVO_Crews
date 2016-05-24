@@ -3,13 +3,14 @@ package com.example.buster.mycrews.BLL.Manager;
 import com.example.buster.mycrews.BE.Crew;
 import com.example.buster.mycrews.DAL.DAL.http.CrewRepository;
 import com.example.buster.mycrews.DAL.DALFacade;
+import com.example.buster.mycrews.DAL.IExtendedRepository;
 
 import java.util.ArrayList;
 
 /**
  * Created by Buster on 24-05-2016.
  */
-public class CrewManager implements IManager<Crew> {
+public class CrewManager implements IExtendedCrewManager<Crew> {
 
     private static CrewManager instance = null;
     DALFacade facade;
@@ -28,7 +29,7 @@ public class CrewManager implements IManager<Crew> {
 
     @Override
     public ArrayList<Crew> getAll() throws Exception {
-       return facade.getCrewRepository().readAll();
+        return facade.getCrewRepository().readAll();
     }
 
     @Override
@@ -59,5 +60,15 @@ public class CrewManager implements IManager<Crew> {
     @Override
     public boolean delete(String id) throws Exception {
         return false;
+    }
+
+    @Override
+    public ArrayList<Crew> readAllUserCrews() throws Exception {
+        return facade.getCrewRepository().readAllUserCrews();
+    }
+
+    @Override
+    public void loadAllUserCrews(String userId) throws Exception {
+        facade.getCrewRepository().loadAllUserCrews(userId);
     }
 }

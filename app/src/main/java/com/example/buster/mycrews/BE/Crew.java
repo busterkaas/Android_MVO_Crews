@@ -16,6 +16,12 @@ public class Crew implements Serializable {
     private ArrayList<User> crewMembers;
     private ArrayList<CrewGameConfirmation> crewGameConfirmations;
 
+    public Crew(String id, String crewName, String crewImgUrl){
+        this.id = id;
+        this.crewName = crewName;
+        this.crewImgUrl = crewImgUrl;
+    }
+
     public Crew(String id, String crewName, String crewImgUrl, User crewLeader, ArrayList<User> crewApplicants, ArrayList<User> crewMembers, ArrayList<CrewGameConfirmation> crewGameConfirmations) {
         this.id = id;
         this.crewName = crewName;
