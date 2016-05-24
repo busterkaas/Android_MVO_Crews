@@ -9,22 +9,51 @@ import java.util.Date;
  */
 public class CrewGameSuggestion implements Serializable {
 
-    private String gameTitle, platformName, gameInfo, coverUrl, trailerUrl;
-    private ArrayList<String> gameGenres;
-    private double gamePrice, crewDiscount;
-    private Date expDate;
+    int crewDiscount;
+    String id, expDateString;
+    Date expDate;
 
+    Game game;
+    Platform platform;
 
-    public CrewGameSuggestion(String gameTitle, String platformName, String gameInfo, String coverUrl, String trailerUrl, ArrayList<String> gameGenres, double gamePrice, double crewDiscount, Date expDate) {
-        this.gameTitle = gameTitle;
-        this.platformName = platformName;
-        this.gameInfo = gameInfo;
-        this.coverUrl = coverUrl;
-        this.trailerUrl = trailerUrl;
-        this.gameGenres = gameGenres;
-        this.gamePrice = gamePrice;
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getExpDateString() {
+        return expDateString;
+    }
+
+    public void setExpDateString(String expDateString) {
+        this.expDateString = expDateString;
+    }
+
+    public CrewGameSuggestion(String id, int crewDiscount, String expDate, Game game, Platform platform) {
+        this.id = id;
         this.crewDiscount = crewDiscount;
-        this.expDate = expDate;
+        this.expDateString = expDate;
+        this.game = game;
+        this.platform = platform;
+    }
+
+    public Game getGame() {
+        return game;
+    }
+
+    public void setGame(Game game) {
+        this.game = game;
+    }
+
+    public Platform getPlatform() {
+        return platform;
+    }
+
+    public void setPlatform(Platform platform) {
+        this.platform = platform;
     }
 
     public Date getExpDate() {
@@ -35,68 +64,13 @@ public class CrewGameSuggestion implements Serializable {
         this.expDate = expDate;
     }
 
-    public ArrayList<String> getGameGenres() {
-        return gameGenres;
-    }
-
-    public void setGameGenres(ArrayList<String> gameGenres) {
-        this.gameGenres = gameGenres;
-    }
-
-    public double getGamePrice() {
-        return gamePrice;
-    }
-
-    public void setGamePrice(double gamePrice) {
-        this.gamePrice = gamePrice;
-    }
-
     public double getCrewDiscount() {
         return crewDiscount;
     }
 
-    public void setCrewDiscount(double crewDiscount) {
+    public void setCrewDiscount(int crewDiscount) {
         this.crewDiscount = crewDiscount;
     }
 
-    public String getGameTitle() {
-        return gameTitle;
-    }
-
-    public void setGameTitle(String gameTitle) {
-        this.gameTitle = gameTitle;
-    }
-
-    public String getPlatformName() {
-        return platformName;
-    }
-
-    public void setPlatformName(String platformName) {
-        this.platformName = platformName;
-    }
-
-    public String getGameInfo() {
-        return gameInfo;
-    }
-
-    public void setGameInfo(String gameInfo) {
-        this.gameInfo = gameInfo;
-    }
-
-    public String getCoverUrl() {
-        return coverUrl;
-    }
-
-    public void setCoverUrl(String coverUrl) {
-        this.coverUrl = coverUrl;
-    }
-
-    public String getTrailerUrl() {
-        return trailerUrl;
-    }
-
-    public void setTrailerUrl(String trailerUrl) {
-        trailerUrl = trailerUrl;
-    }
 
 }

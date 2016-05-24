@@ -15,13 +15,23 @@ public class Crew implements Serializable {
     private ArrayList<User> crewApplicants;
     private ArrayList<User> crewMembers;
     private ArrayList<CrewGameConfirmation> crewGameConfirmations;
+    private ArrayList<CrewGameSuggestion> crewGameSuggestions;
+
+    public ArrayList<CrewGameSuggestion> getCrewGameSuggestions() {
+        return crewGameSuggestions;
+    }
+
+    public void setCrewGameSuggestions(ArrayList<CrewGameSuggestion> crewGameSuggestions) {
+        this.crewGameSuggestions = crewGameSuggestions;
+    }
 
     public Crew(String id, String crewName, String crewImgUrl){
         this.id = id;
         this.crewName = crewName;
+
         this.crewImgUrl = crewImgUrl;
     }
-
+/*
     public Crew(String id, String crewName, String crewImgUrl, User crewLeader, ArrayList<User> crewApplicants, ArrayList<User> crewMembers, ArrayList<CrewGameConfirmation> crewGameConfirmations) {
         this.id = id;
         this.crewName = crewName;
@@ -31,8 +41,19 @@ public class Crew implements Serializable {
         this.crewMembers = crewMembers;
         this.crewGameConfirmations = crewGameConfirmations;
     }
+*/
+    public Crew(String id, String crewName, String crewImgUrl, User crewLeader,  ArrayList<User> crewApplicants, ArrayList<User> crewMembers, ArrayList<CrewGameSuggestion> crewGameSuggestions ) {
+        this.crewName = crewName;
+        this.crewImgUrl = crewImgUrl;
+        this.crewLeader = crewLeader;
+        this.id = id;
+        this.crewApplicants = crewApplicants;
+        this.crewMembers = crewMembers;
+        this.crewGameSuggestions = crewGameSuggestions;
+    }
 
-    public Crew(String id, String crewName, String crewImgUrl, User crewLeader,  ArrayList<User> crewApplicants, ArrayList<User> crewMembers) {
+
+    public Crew(String id, String crewName, String crewImgUrl, User crewLeader,  ArrayList<User> crewApplicants, ArrayList<User> crewMembers ) {
         this.crewName = crewName;
         this.crewImgUrl = crewImgUrl;
         this.crewLeader = crewLeader;
