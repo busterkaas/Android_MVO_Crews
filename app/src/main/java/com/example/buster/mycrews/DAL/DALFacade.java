@@ -12,6 +12,19 @@ public class DALFacade {
 
     ICRUDRepository<Crew> crewRepository;
     ICRUDRepository<User> userRepository;
+    private static DALFacade instance;
+
+    private DALFacade(){
+
+    }
+
+    public static DALFacade getInstance(){
+        if(instance==null){
+            instance = new DALFacade();
+        }
+        return instance;
+    }
+
 
     public ICRUDRepository<Crew> getCrewRepository(){
         if(crewRepository==null){

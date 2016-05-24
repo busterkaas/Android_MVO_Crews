@@ -9,14 +9,108 @@
     android:paddingTop="@dimen/activity_vertical_margin">
 
     <TextView
+        android:id="@+id/tvEditInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/tvEditInfo"
-        android:id="@+id/tvEditInfo"
-        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:text="@string/tvEditInfo"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/tvUsernameLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/tvEditInfo"
+        android:layout_marginTop="84dp"
+        android:text="@string/tvUsernameLabel"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <EditText
+        android:id="@+id/etUsername"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/tvUsernameLabel"
+        android:singleLine="true"
+        android:text="@string/etUsername"
+        android:textColor="@color/mvoWhite"
+        android:textSize="15dp"
+        android:textStyle="bold|italic"
+        android:typeface="monospace" />
+
+    <TextView
+        android:id="@+id/tvFirstNameLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/etUsername"
+        android:text="@string/tvFirstNameLabel"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <EditText
+        android:id="@+id/etFirstname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/tvFirstNameLabel"
+        android:singleLine="true"
+        android:text="@string/etFirstname"
+        android:textColor="@color/mvoWhite"
+        android:textSize="15dp"
+        android:textStyle="bold|italic"
+        android:typeface="monospace" />
+
+    <TextView
+        android:id="@+id/tvlastNameLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/etFirstname"
+        android:text="@string/tvLastNameLabel"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <EditText
+        android:id="@+id/etLastname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvlastNameLabel"
+        android:singleLine="true"
+        android:text="@string/etLastname"
+        android:textColor="@color/mvoWhite"
+        android:textSize="15dp"
+        android:textStyle="bold|italic"
+        android:typeface="monospace" />
+
+    <TextView
+        android:id="@+id/tvPhoneNumberLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/etLastname"
+        android:text="@string/tvPhoneNumberLabel"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <EditText
+        android:id="@+id/etPhoneNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvPhoneNumberLabel"
+        android:inputType="number"
+        android:singleLine="true"
+        android:text="@string/etPhoneNumber"
+        android:textColor="@color/mvoWhite"
+        android:textSize="15dp"
+        android:textStyle="bold|italic"
+        android:typeface="monospace" />
 
     <ImageButton
         android:id="@+id/btnSaveProfile"
@@ -29,48 +123,4 @@
         android:scaleType="fitCenter"
         android:src="@drawable/my_edit_profile_save_button" />
 
-    <EditText
-        android:id="@+id/etUsername"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="150dp"
-        android:text="@string/etUsername"
-        android:textColor="@color/mvoWhite"
-        android:textSize="15dp"
-        android:textStyle="bold|italic"
-        android:typeface="monospace" />
-
-    <EditText
-        android:id="@+id/etFirstname"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/etFirstname"
-        android:textColor="@color/mvoWhite"
-        android:textSize="15dp"
-        android:textStyle="bold|italic"
-        android:typeface="monospace"
-        android:layout_below="@+id/etUsername"/>
-
-    <EditText
-        android:id="@+id/etLastname"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/etLastname"
-        android:textColor="@color/mvoWhite"
-        android:textSize="15dp"
-        android:textStyle="bold|italic"
-        android:typeface="monospace"
-        android:layout_below="@+id/etFirstname"/>
-
-    <EditText
-        android:id="@+id/etEmail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/etEmail"
-        android:textColor="@color/mvoWhite"
-        android:textSize="15dp"
-        android:textStyle="bold|italic"
-        android:typeface="monospace"
-        android:layout_below="@+id/etLastname"/>
-
-   </RelativeLayout>
+</RelativeLayout>

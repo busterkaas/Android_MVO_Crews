@@ -2,6 +2,7 @@ package com.example.buster.mycrews.BLL.Manager;
 
 import com.example.buster.mycrews.BE.Crew;
 import com.example.buster.mycrews.DAL.DAL.http.CrewRepository;
+import com.example.buster.mycrews.DAL.DALFacade;
 
 import java.util.ArrayList;
 
@@ -10,14 +11,14 @@ import java.util.ArrayList;
  */
 public class CrewManager implements IManager<Crew> {
 
-    private CrewManager instance = null;
-    CrewRepository crewRepository;
+    private static CrewManager instance = null;
+    DALFacade facade;
 
     private CrewManager() {
-        crewRepository = new CrewRepository();
+        facade = facade.getInstance();
     }
 
-    public CrewManager getInstance() {
+    public static CrewManager getInstance() {
         if (instance == null) {
             instance = new CrewManager();
         }
@@ -27,7 +28,12 @@ public class CrewManager implements IManager<Crew> {
 
     @Override
     public ArrayList<Crew> getAll() throws Exception {
-        return null;
+       return facade.getCrewRepository().readAll();
+    }
+
+    @Override
+    public void loadAll() throws Exception {
+        facade.getCrewRepository().loadAll();
     }
 
     @Override
