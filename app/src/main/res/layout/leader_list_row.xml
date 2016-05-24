@@ -25,7 +25,6 @@
 
     <Button
         android:id="@+id/accept"
-        android:layout_alignLeft="@id/decline"
         android:layout_width="40dp"
         android:layout_height="wrap_content"
         android:text="+"
