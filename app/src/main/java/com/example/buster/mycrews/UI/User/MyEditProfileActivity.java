@@ -3,6 +3,7 @@ package com.example.buster.mycrews.UI.User;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -52,48 +53,8 @@ public class MyEditProfileActivity extends MenuActivity {
     }
 
     private void updateUserInDatabase() {
-
-
-/*
-       // create a new json object with the updated information
-        JSONObject updatedUser = new JSONObject();
-        try {
-            updatedUser.put("_id", "" + loggedInUserId);
-            updatedUser.put("name", "" + etUserName.getText().toString());
-            updatedUser.put("firstName", "" + etFirstName.getText().toString());
-            updatedUser.put("lastName", "" + etLastName.getText().toString());
-            updatedUser.put("phoneNumber", "" + Integer.parseInt(etPhoneNumber.getText().toString()));
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        URL urlToRequest;
-        String urlPath = "http://localhost:9000/api/users/" + loggedInUserId;
-        HttpURLConnection urlConnection = null;
-        try {
-            urlToRequest = new URL(urlPath);
-            urlConnection = (HttpURLConnection) urlToRequest.openConnection();
-            urlConnection.setDoOutput(true);
-            urlConnection.setRequestMethod("PUT");
-            urlConnection.setRequestProperty("Content-Type", "application/json");
-        } catch (ProtocolException | MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e1) {
-            e1.printStackTrace();
-        }
-        PrintWriter out = null;
-        try {
-            out = new PrintWriter(urlConnection.getOutputStream());
-            System.out.println("" + updatedUser.toString());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        if (out != null) {
-            out.print(updatedUser);
-        }
-        out.close();
-    }
-*/
+        // go through gateway and update user in mongo database
+        System.out.print("TO DO : UPDATE USER IN MONGO DATABASE");
     }
 
     private void populateEditTexts() {
