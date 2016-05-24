@@ -5,6 +5,7 @@ import android.util.Log;
 import com.example.buster.mycrews.BE.Crew;
 import com.example.buster.mycrews.BE.User;
 import com.example.buster.mycrews.DAL.ICRUDRepository;
+import com.example.buster.mycrews.DAL.IExtendedRepository;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -19,96 +20,94 @@ import java.util.Scanner;
 /**
  * Created by Buster on 10-05-2016.
  */
-public class CrewRepository implements ICRUDRepository<Crew>{
+public class CrewRepository implements IExtendedRepository<Crew> {
 
-private final String URL = "http://10.0.2.2:9000/api/crews";
+    private final String URL = "http://10.0.2.2:9000/api/crews";
 
-private final String TAG = "CREW";
+    private final String TAG = "CREW";
 
-ArrayList<Crew> m_crews;
-
-        public CrewRepository(){
-            m_crews = new ArrayList<Crew>();
-        }
-
-        public void loadAll()
-        {
-            try {
-                String result = getContent(URL);
-
-                if (result == null) return;
-
-                JSONArray array = new JSONArray(result);
-
-                for (int i = 0; i < array.length(); i++) {
-                    JSONObject d = array.getJSONObject(i);
-
-                        String crewId = d.getString("_id");
-                        String crewName = d.getString("name");
-                        String crewImgUrl = d.getString("crewImgUrl");
+    ArrayList<Crew> m_crews;
+    ArrayList<Crew> m_usercrews;
 
 
-                        JSONObject JSONleader = d.getJSONObject("leader");
+    public CrewRepository() {
 
-                        User leader = new User(JSONleader.getString("name"));
+    }
 
-                        JSONArray JSONApplicants = d.getJSONArray("applicants");
-                        ArrayList<User> applicants = new ArrayList<>();
-                        for (int v = 0; v < JSONApplicants.length(); v++) {
-                            User u = new User(JSONApplicants.getJSONObject(v).getString("name"));
-                            applicants.add(u);
-                        }
+    public void loadAll() {
+        m_crews = new ArrayList<Crew>();
+        try {
+            String result = getContent(URL);
 
-                        JSONArray JSONUsers = d.getJSONArray("users");
-                        ArrayList<User> users = new ArrayList<>();
-                        for (int v = 0; v < JSONUsers.length(); v++) {
-                        User u = new User(JSONUsers.getJSONObject(v).getString("name"));
-                        users.add(u);
-                        }
+            if (result == null) return;
 
-                        Crew crew = new Crew(crewId, crewName, crewImgUrl, leader, applicants, users);
+            JSONArray array = new JSONArray(result);
 
-                        m_crews.add(crew);
+            for (int i = 0; i < array.length(); i++) {
+                JSONObject d = array.getJSONObject(i);
 
+                String crewId = d.getString("_id");
+                String crewName = d.getString("name");
+                String crewImgUrl = d.getString("crewImgUrl");
+
+
+                JSONObject JSONleader = d.getJSONObject("leader");
+
+                User leader = new User(JSONleader.getString("name"));
+
+                JSONArray JSONApplicants = d.getJSONArray("applicants");
+                ArrayList<User> applicants = new ArrayList<>();
+                for (int v = 0; v < JSONApplicants.length(); v++) {
+                    User u = new User(JSONApplicants.getJSONObject(v).getString("name"));
+                    applicants.add(u);
                 }
 
-            } catch (JSONException e) {
-                Log.e(TAG,
-                        "There was an error parsing the JSON", e);
-            } catch (Exception e)
-            {  Log.d(TAG, "General exception in loadAll " + e.getMessage());
-            }
-        }
-
-
-
-
-        /**
-         * Get the content of the url as a string. Based on using a scanner.
-         * @param urlString - the url must return data typical in either json, xml, csv etc..
-         * @return the content as a string. Null is something goes wrong.
-         */
-        private String getContent(String urlString)
-        {
-            StringBuilder sb = new StringBuilder();
-            try {
-                java.net.URL url = new URL(urlString);
-                Scanner s = new Scanner(url.openStream());
-
-                while (s.hasNextLine()) {
-                    String line = s.nextLine();
-                    sb.append(line);
+                JSONArray JSONUsers = d.getJSONArray("users");
+                ArrayList<User> users = new ArrayList<>();
+                for (int v = 0; v < JSONUsers.length(); v++) {
+                    User u = new User(JSONUsers.getJSONObject(v).getString("name"));
+                    users.add(u);
                 }
+
+                Crew crew = new Crew(crewId, crewName, crewImgUrl, leader, applicants, users);
+
+                m_crews.add(crew);
             }
-            catch (MalformedURLException e) {
-                e.printStackTrace();
-                return null;
-            } catch (IOException e) {
-                e.printStackTrace();
-                return null;
-            }
-            return sb.toString();
+
+        } catch (JSONException e) {
+            Log.e(TAG,
+                    "There was an error parsing the JSON", e);
+        } catch (Exception e) {
+            Log.d(TAG, "General exception in loadAll " + e.getMessage());
         }
+    }
+
+
+    /**
+     * Get the content of the url as a string. Based on using a scanner.
+     *
+     * @param urlString - the url must return data typical in either json, xml, csv etc..
+     * @return the content as a string. Null is something goes wrong.
+     */
+    private String getContent(String urlString) {
+        StringBuilder sb = new StringBuilder();
+        try {
+            java.net.URL url = new URL(urlString);
+            Scanner s = new Scanner(url.openStream());
+
+            while (s.hasNextLine()) {
+                String line = s.nextLine();
+                sb.append(line);
+            }
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+            return null;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+        return sb.toString();
+    }
 
     @Override
     public Crew create(Crew crew) throws Exception {
@@ -133,5 +132,43 @@ ArrayList<Crew> m_crews;
     @Override
     public void delete(int id) throws Exception {
 
+    }
+
+    @Override
+    public ArrayList<Crew> readAllUserCrews() throws Exception {
+        return m_usercrews;
+    }
+
+    @Override
+    public void loadAllUserCrews(String userId) throws Exception {
+        m_usercrews = new ArrayList<>();
+        try {
+            String result = getContent(URL + "/user/" + userId);
+
+            if (result == null) return;
+
+            JSONArray array = new JSONArray(result);
+
+            for (int i = 0; i < array.length(); i++) {
+                JSONObject d = array.getJSONObject(i);
+                Log.d("UserCrew", d.toString());
+
+                String crewId = d.getString("_id");
+                String crewName = d.getString("name");
+                String crewImgUrl = d.getString("crewImgUrl");
+
+
+                Crew crew = new Crew(crewId, crewName, crewImgUrl);
+
+                m_usercrews.add(crew);
+            }
+            Log.d("CREWSIZE", "Size: IN LOAD "+ m_usercrews.size());
+
+        } catch (JSONException e) {
+            Log.e(TAG,
+                    "There was an error parsing the JSON", e);
+        } catch (Exception e) {
+            Log.d(TAG, "General exception in loadAllUserCrews " + e.getMessage());
+        }
     }
 }

@@ -38,7 +38,7 @@ public interface ICRUDRepository<T> {
     public void delete(int id) throws Exception;
 
     /**
-     *
+     * load all objects
      * @throws Exception
      */
     public void loadAll() throws Exception;
