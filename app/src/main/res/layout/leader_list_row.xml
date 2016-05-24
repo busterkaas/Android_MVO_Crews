@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:background="@drawable/list_selector"
+    android:orientation="horizontal"
+    android:layout_height="45dp">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/userName"
+        android:text="Username"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:textColor="#e8cfcfcf"
+        android:layout_marginTop="2dp"
+        android:layout_marginLeft="10dp"
+        android:layout_centerVertical="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="190dp"/>
+
+    <Button
+        android:id="@+id/accept"
+        android:layout_alignLeft="@id/decline"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:text="+"
+        android:textStyle="bold"
+        android:enabled="false"
+        android:visibility="visible" />
+
+    <Button
+        android:id="@+id/decline"
+        android:text="-"
+        android:textStyle="bold"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"/>
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>
