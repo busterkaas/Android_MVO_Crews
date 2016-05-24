@@ -1,4 +1,4 @@
-package com.example.buster.mycrews;
+package com.example.buster.mycrews.UI.Crew;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,6 +8,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.buster.mycrews.BE.Crew;
+import com.example.buster.mycrews.MenuActivity;
+import com.example.buster.mycrews.R;
 
 public class CrewProfileActivity extends MenuActivity {
 

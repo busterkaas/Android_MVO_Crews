@@ -1,7 +1,8 @@
-package com.example.buster.mycrews.DAL;
+package com.example.buster.mycrews.DAL.DAL.http;
 
 import android.util.Log;
 import com.example.buster.mycrews.BE.User;
+import com.example.buster.mycrews.DAL.ICRUDRepository;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -16,7 +17,7 @@ import java.util.Scanner;
 /**
  * Created by Buster on 10-05-2016.
  */
-public class UserDAO {
+public class UserRepository implements ICRUDRepository<User> {
 
     private final String URL = "http://10.0.2.2:9000/api/users";
 
@@ -24,7 +25,7 @@ public class UserDAO {
 
     ArrayList<User> m_users;
 
-    public UserDAO(){
+    public UserRepository(){
         m_users = new ArrayList<User>();
     }
 
@@ -87,6 +88,28 @@ public class UserDAO {
     }
 
 
+    @Override
+    public User create(User user) throws Exception {
+        return null;
+    }
 
+    @Override
+    public ArrayList<User> readAll() throws Exception {
+        return null;
+    }
 
+    @Override
+    public User read(int id) throws Exception {
+        return null;
+    }
+
+    @Override
+    public void update(User user) throws Exception {
+
+    }
+
+    @Override
+    public void delete(int id) throws Exception {
+
+    }
 }

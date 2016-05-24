@@ -1,6 +1,5 @@
-package com.example.buster.mycrews;
+package com.example.buster.mycrews.UI.User;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -8,9 +7,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.buster.mycrews.BE.User;
-
-import org.w3c.dom.Text;
+import com.example.buster.mycrews.MenuActivity;
+import com.example.buster.mycrews.R;
 
 public class MyCrewsActivity extends MenuActivity {
 

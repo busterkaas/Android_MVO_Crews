@@ -1,10 +1,12 @@
-package com.example.buster.mycrews;
+package com.example.buster.mycrews.UI.User;
 
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.EditText;
 import android.widget.ImageButton;
+
+import com.example.buster.mycrews.R;
 
 /**
  * Created by Hardy Drachmann on 17-05-2016.

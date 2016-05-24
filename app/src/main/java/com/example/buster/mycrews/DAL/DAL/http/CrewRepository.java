@@ -1,9 +1,10 @@
-package com.example.buster.mycrews.DAL;
+package com.example.buster.mycrews.DAL.DAL.http;
 
 import android.util.Log;
 
 import com.example.buster.mycrews.BE.Crew;
 import com.example.buster.mycrews.BE.User;
+import com.example.buster.mycrews.DAL.ICRUDRepository;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -18,7 +19,7 @@ import java.util.Scanner;
 /**
  * Created by Buster on 10-05-2016.
  */
-public class CrewDAO{
+public class CrewRepository implements ICRUDRepository<Crew>{
 
 private final String URL = "http://10.0.2.2:9000/api/crews";
 
@@ -26,7 +27,7 @@ private final String TAG = "CREW";
 
 ArrayList<Crew> m_crews;
 
-        public CrewDAO(){
+        public CrewRepository(){
             m_crews = new ArrayList<Crew>();
         }
 
@@ -48,6 +49,7 @@ ArrayList<Crew> m_crews;
 
 
                         JSONObject JSONleader = d.getJSONObject("leader");
+
                         User leader = new User(JSONleader.getString("name"));
 
                         JSONArray JSONApplicants = d.getJSONArray("applicants");
@@ -109,4 +111,28 @@ ArrayList<Crew> m_crews;
             return sb.toString();
         }
 
+    @Override
+    public Crew create(Crew crew) throws Exception {
+        return null;
+    }
+
+    @Override
+    public ArrayList<Crew> readAll() throws Exception {
+        return null;
+    }
+
+    @Override
+    public Crew read(int id) throws Exception {
+        return null;
+    }
+
+    @Override
+    public void update(Crew crew) throws Exception {
+
+    }
+
+    @Override
+    public void delete(int id) throws Exception {
+
+    }
 }

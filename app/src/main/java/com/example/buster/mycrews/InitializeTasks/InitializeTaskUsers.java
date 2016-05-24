@@ -1,9 +1,10 @@
-package com.example.buster.mycrews;
+package com.example.buster.mycrews.InitializeTasks;
 
 import android.os.AsyncTask;
 
 import com.example.buster.mycrews.BE.User;
-import com.example.buster.mycrews.DAL.UserDAO;
+import com.example.buster.mycrews.DAL.DAL.http.UserRepository;
+import com.example.buster.mycrews.MainActivity;
 
 import java.util.ArrayList;
 
@@ -11,7 +12,7 @@ import java.util.ArrayList;
  * Created by Buster on 10-05-2016.
  */
 public class InitializeTaskUsers extends AsyncTask<
-        UserDAO, // collection of PoliceDistricts to execute
+        UserRepository, // collection of PoliceDistricts to execute
         Void, // to type of progress info
         ArrayList<User>> // output of doInBackground
 {
@@ -24,7 +25,7 @@ public class InitializeTaskUsers extends AsyncTask<
     }
 
     @Override
-    protected ArrayList<User> doInBackground(UserDAO... ms) {
+    protected ArrayList<User> doInBackground(UserRepository... ms) {
         // params comes from the execute()
         ms[0].loadAll();
         return ms[0].getAll();

@@ -1,7 +1,6 @@
-package com.example.buster.mycrews;
+package com.example.buster.mycrews.UI.Crew;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -9,11 +8,13 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.example.buster.mycrews.BE.Crew;
 import com.example.buster.mycrews.BE.User;
-import com.example.buster.mycrews.DAL.CrewDAO;
+import com.example.buster.mycrews.DAL.DAL.http.CrewRepository;
+import com.example.buster.mycrews.InitializeTasks.InitializeTaskCrews;
+import com.example.buster.mycrews.MenuActivity;
+import com.example.buster.mycrews.R;
 
 import java.util.ArrayList;
 
@@ -44,7 +45,7 @@ public class FindCrewActivity extends MenuActivity {
 
         crews = new ArrayList<>();
         InitializeTaskCrews tast = new InitializeTaskCrews(this);
-        tast.execute(new CrewDAO());
+        tast.execute(new CrewRepository());
     }
 
     private void seachCrewsList(){

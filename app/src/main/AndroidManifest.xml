@@ -20,10 +20,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MyCrewsActivity" />
-        <activity android:name=".FindCrewActivity" />
-        <activity android:name=".MyProfileActivity" />
-        <activity android:name=".CrewProfileActivity" />
+        <activity android:name=".UI.User.MyCrewsActivity" />
+        <activity android:name=".UI.Crew.FindCrewActivity" />
+        <activity android:name=".UI.User.MyProfileActivity" />
+        <activity android:name=".UI.Crew.CrewProfileActivity" />
     </application>
 
 </manifest>
