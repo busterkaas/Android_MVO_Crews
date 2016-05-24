@@ -14,7 +14,7 @@
 
     <ListView
         android:id="@+id/crewGameList"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="30dp"
         android:layout_below="@+id/etCrewSearch"
         android:divider="#ff471a"
         android:dividerHeight="1dp"

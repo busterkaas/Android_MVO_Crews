@@ -55,7 +55,7 @@ public class CrewGameSuggestionGameListViewAdapter extends BaseAdapter {
 
         CrewGameSuggestion cgs = gameSuggestions.get(position);
 
-        gameTitle.setText(cgs.getGameTitle());
+        gameTitle.setText(cgs.getGame().getTitle());
 
         return view;
     }
