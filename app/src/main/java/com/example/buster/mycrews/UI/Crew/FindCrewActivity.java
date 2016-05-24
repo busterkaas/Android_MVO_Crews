@@ -35,6 +35,7 @@ public class FindCrewActivity extends MenuActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_find_crew);
+        crewManager = CrewManager.getInstance();
 
         listView = (ListView) findViewById(R.id.crewList);
         etSearchField = (EditText) findViewById(R.id.etCrewSearch);
@@ -49,7 +50,7 @@ public class FindCrewActivity extends MenuActivity {
 
         crews = new ArrayList<>();
         InitializeTaskCrews tast = new InitializeTaskCrews(this);
-        tast.execute(crewManager.getInstance());
+        tast.execute(crewManager);
     }
 
     private void seachCrewsList(){

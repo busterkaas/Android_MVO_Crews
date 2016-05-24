@@ -10,8 +10,9 @@ import com.example.buster.mycrews.DAL.DAL.http.UserRepository;
  */
 public class DALFacade {
 
-    ICRUDRepository<Crew> crewRepository;
+    IExtendedRepository<Crew> crewRepository;
     ICRUDRepository<User> userRepository;
+
     private static DALFacade instance;
 
     private DALFacade(){
@@ -26,7 +27,7 @@ public class DALFacade {
     }
 
 
-    public ICRUDRepository<Crew> getCrewRepository(){
+    public IExtendedRepository<Crew> getCrewRepository(){
         if(crewRepository==null){
             crewRepository = new CrewRepository();
         }
