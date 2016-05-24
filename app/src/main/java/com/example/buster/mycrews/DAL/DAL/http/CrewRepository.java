@@ -53,19 +53,23 @@ public class CrewRepository implements IExtendedRepository<Crew> {
 
                 JSONObject JSONleader = d.getJSONObject("leader");
 
-                User leader = new User(JSONleader.getString("name"));
+                User leader = new User(JSONleader.getString("_id"), JSONleader.getString("name"));
 
                 JSONArray JSONApplicants = d.getJSONArray("applicants");
                 ArrayList<User> applicants = new ArrayList<>();
                 for (int v = 0; v < JSONApplicants.length(); v++) {
-                    User u = new User(JSONApplicants.getJSONObject(v).getString("name"));
+                    String userName = JSONApplicants.getJSONObject(v).getString("name");
+                    String userId = JSONApplicants.getJSONObject(v).getString("_id");
+                    User u = new User(userId, userName);
                     applicants.add(u);
                 }
 
                 JSONArray JSONUsers = d.getJSONArray("users");
                 ArrayList<User> users = new ArrayList<>();
                 for (int v = 0; v < JSONUsers.length(); v++) {
-                    User u = new User(JSONUsers.getJSONObject(v).getString("name"));
+                    String userName = JSONUsers.getJSONObject(v).getString("name");
+                    String userId = JSONUsers.getJSONObject(v).getString("_id");
+                    User u = new User(userId, userName);
                     users.add(u);
                 }
 
