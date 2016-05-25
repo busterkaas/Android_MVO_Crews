@@ -19,7 +19,7 @@ import java.util.Scanner;
  */
 public class UserRepository implements ICRUDRepository<User> {
 
-    private final String URL = "http://10.0.2.2:9000/api/users";
+    private final String URL = "http://mvogamesjs-tasin.rhcloud.com/api/users";
 
     private final String TAG = "USER";
 
@@ -37,7 +37,7 @@ public class UserRepository implements ICRUDRepository<User> {
             if (result == null) return;
 
             JSONArray array = new JSONArray(result);
-
+            Log.d(TAG, "loadAll: " + array);
             for (int i = 0; i < array.length(); i++) {
                 JSONObject d = array.getJSONObject(i);
                 try {
