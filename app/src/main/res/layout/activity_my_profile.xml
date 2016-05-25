@@ -8,37 +8,35 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:scaleType="center"
     tools:context=".UI.User.MyProfileActivity">
 
     <ImageView
         android:id="@+id/imageViewPhoto"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
+        android:layout_width="256px"
+        android:layout_height="256px"
         android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
         android:src="@drawable/my_profile_user_imageview" />
 
     <ImageButton
         android:id="@+id/btnTakePhoto"
-        android:layout_width="0dp"
+        android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_alignEnd="@+id/imageViewPhoto"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignRight="@+id/imageViewPhoto"
         android:layout_below="@+id/imageViewPhoto"
+        android:layout_centerHorizontal="true"
         android:background="@null"
         android:scaleType="fitCenter"
         android:src="@drawable/my_profile_camera_button" />
 
     <TextView
+        android:id="@+id/tvUsernameLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="@string/tvUsernameLabel"
-        android:id="@+id/tvUsernameLabel"
-        android:layout_centerVertical="true"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_marginTop="36dp"
+        android:layout_below="@+id/btnTakePhoto"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -46,83 +44,86 @@
         android:id="@+id/tvUsername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
+        android:layout_below="@+id/tvUsernameLabel"
+        android:layout_marginBottom="10dp"
         android:text="@string/tvUsername"
         android:textColor="@color/mvoWhite"
         android:textSize="15dp"
         android:textStyle="bold|italic"
-        android:typeface="monospace"
-        android:layout_below="@+id/tvUsernameLabel"
-        android:layout_alignParentLeft="true" />
+        android:typeface="monospace" />
 
     <TextView
+        android:id="@+id/tvFirstNameLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_below="@id/tvUsername"
         android:text="@string/tvFirstNameLabel"
-        android:id="@+id/tvFirstNameLabel"
-        android:layout_below="@id/tvUsername"/>
+        android:textAppearance="?android:attr/textAppearanceSmall" />
 
     <TextView
         android:id="@+id/tvFirstname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/tvFirstNameLabel"
+        android:layout_marginBottom="10dp"
         android:text="@string/tvFirstname"
         android:textColor="@color/mvoWhite"
         android:textSize="15dp"
         android:textStyle="bold|italic"
-        android:typeface="monospace"
-        android:layout_below="@id/tvFirstNameLabel"
-        android:layout_alignParentLeft="true" />
+        android:typeface="monospace" />
 
     <TextView
+        android:id="@+id/tvlastNameLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_below="@id/tvFirstname"
         android:text="@string/tvLastNameLabel"
-        android:id="@+id/tvlastNameLabel"
-        android:layout_below="@id/tvFirstname"/>
+        android:textAppearance="?android:attr/textAppearanceSmall" />
 
     <TextView
         android:id="@+id/tvLastname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/tvlastNameLabel"
+        android:layout_marginBottom="10dp"
         android:text="@string/tvLastname"
         android:textColor="@color/mvoWhite"
         android:textSize="15dp"
         android:textStyle="bold|italic"
-        android:typeface="monospace"
-        android:layout_below="@id/tvlastNameLabel"
-        android:layout_alignParentLeft="true" />
+        android:typeface="monospace" />
 
     <TextView
+        android:id="@+id/tvPhoneNumberLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_below="@id/tvLastname"
         android:text="@string/tvPhoneNumberLabel"
-        android:id="@+id/tvPhoneNumberLabel"
-        android:layout_below="@id/tvLastname"/>
+        android:textAppearance="?android:attr/textAppearanceSmall" />
 
     <TextView
         android:id="@+id/tvPhoneNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/btnEditProfile"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@id/tvPhoneNumberLabel"
         android:text="@string/tvPhoneNumber"
         android:textColor="@color/mvoWhite"
         android:textSize="15dp"
         android:textStyle="bold|italic"
-        android:typeface="monospace"
-        android:layout_above="@+id/btnEditProfile"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@id/tvPhoneNumberLabel"/>
+        android:typeface="monospace" />
 
     <ImageButton
         android:id="@+id/btnEditProfile"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_alignLeft="@+id/imageViewPhoto"
         android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
         android:background="@null"
         android:scaleType="fitCenter"
         android:src="@drawable/my_profile_edit_button" />
