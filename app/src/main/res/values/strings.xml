@@ -17,7 +17,6 @@
     <string name="tvFirstname">db data goes here</string>
     <string name="tvLastname">db data goes here</string>
     <string name="tvPhoneNumber">db data goes here</string>
-    <string name="tvEditInfo">Edit profile settings…</string>
     <string name="tvUsernameLabel">User Tag</string>
     <string name="tvFirstNameLabel">First Name</string>
     <string name="tvLastNameLabel">Last Name</string>
