@@ -7,6 +7,36 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@color/chatBG"
     tools:context="com.example.buster.mycrews.UI.Crew.CrewChatActivity">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <EditText
+            android:layout_width="250dp"
+            android:layout_height="match_parent"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Send"/>
+    </LinearLayout>
+
+
+<LinearLayout
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:layout_marginTop="55dp"
+    android:background="@color/mvoOrange">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="414dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:background="@color/chatBG"/>
+</LinearLayout>
 </RelativeLayout>
