@@ -30,13 +30,12 @@ public class InitializeTaskUsers extends AsyncTask<
     protected ArrayList<User> doInBackground(UserManager... ms) {
         // params comes from the execute()
         try {
-            ms[0].loadAll();
+            ms[0].loadAll(null);
             return ms[0].getAll();
         }catch (Exception e){
             Log.d("error", "error here");
             return null;
         }
-
     }
 
     // onPostExecute displays the results of the AsyncTask.doInBackground().

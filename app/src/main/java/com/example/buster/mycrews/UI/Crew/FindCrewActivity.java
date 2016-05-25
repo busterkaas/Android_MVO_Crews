@@ -47,7 +47,7 @@ public class FindCrewActivity extends MenuActivity {
 
 
         crews = new ArrayList<>();
-        InitializeTaskCrews tast = new InitializeTaskCrews(this);
+        InitializeTaskCrews tast = new InitializeTaskCrews(this, null);
         tast.execute(crewManager);
     }
 
