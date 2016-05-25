@@ -1,11 +1,14 @@
 package com.example.buster.mycrews;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 
+import com.example.buster.mycrews.BLL.Manager.ImageDownloader;
 import com.example.buster.mycrews.UI.Crew.FindCrewActivity;
 import com.example.buster.mycrews.UI.User.MyCrewsActivity;
 import com.example.buster.mycrews.UI.User.MyProfileActivity;
@@ -21,6 +24,7 @@ public class MenuActivity extends AppCompatActivity{
         getMenuInflater().inflate(R.menu.menu, menu);
         return true;
     }
+
     void setImageActionBar(){
         ActionBar actionbar = getSupportActionBar();
         actionbar.setDisplayShowHomeEnabled(true);
@@ -60,5 +64,17 @@ public class MenuActivity extends AppCompatActivity{
         return super.onOptionsItemSelected(item);
     }
 
+
+    public void downloadImage(ImageView imgView, String url) {
+
+        ImageDownloader task = new ImageDownloader();
+        Bitmap myImage;
+        try {
+            myImage = task.execute(url).get();
+            imgView.setImageBitmap(myImage);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 }

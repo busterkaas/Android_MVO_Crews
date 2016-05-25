@@ -1,6 +1,5 @@
 package com.example.buster.mycrews.UI.Crew;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -12,6 +11,7 @@ import com.example.buster.mycrews.BE.Crew;
 import com.example.buster.mycrews.BE.CrewGameSuggestion;
 import com.example.buster.mycrews.MenuActivity;
 import com.example.buster.mycrews.R;
+import com.example.buster.mycrews.UI.ListViewAdapters.CrewGameSuggestionGameListViewAdapter;
 
 import java.util.ArrayList;
 
