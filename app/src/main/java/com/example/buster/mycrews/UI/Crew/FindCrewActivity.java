@@ -1,7 +1,9 @@
 package com.example.buster.mycrews.UI.Crew;
 
+import android.app.Application;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
@@ -9,6 +11,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 
 import com.example.buster.mycrews.BE.Crew;
+import com.example.buster.mycrews.BE.User;
 import com.example.buster.mycrews.BLL.Manager.CrewManager;
 import com.example.buster.mycrews.InitializeTasks.InitializeTaskCrews;
 import com.example.buster.mycrews.MenuActivity;
@@ -33,6 +36,17 @@ public class FindCrewActivity extends MenuActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_find_crew);
+
+
+
+        Bundle extra = getIntent().getExtras();
+        if(extra!=null) {
+            User user = (User)extra.get("LoggedInUser");
+            setUser(user);
+        }else{
+            System.exit(0);
+        }
+
         crewManager = CrewManager.getInstance();
 
         listView = (ListView) findViewById(R.id.crewList);
@@ -49,6 +63,13 @@ public class FindCrewActivity extends MenuActivity {
         crews = new ArrayList<>();
         InitializeTaskCrews tast = new InitializeTaskCrews(this, null);
         tast.execute(crewManager);
+
+
+    }
+
+    @Override
+    public void setUser(User user) {
+        super.setUser(user);
     }
 
     private void seachCrewsList(){
@@ -63,10 +84,13 @@ public class FindCrewActivity extends MenuActivity {
         findCrewListViewAdapter.notifyDataSetChanged();
     }
 
+
+
     private void crewDetails(int pos){
         Intent intent = new Intent(FindCrewActivity.this, CrewProfileActivity.class);
         Crew crew = crewSearch.get(pos);
         intent.putExtra("crew", crew);
+        intent.putExtra("LoggedInUser", user);
         startActivity(intent);
     }
 

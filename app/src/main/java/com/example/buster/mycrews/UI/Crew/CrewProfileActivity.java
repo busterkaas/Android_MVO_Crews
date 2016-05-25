@@ -26,7 +26,7 @@ public class CrewProfileActivity extends MenuActivity {
 
     Crew crew;
     UserController userController;
-    User me;
+    //User me;
     String LOGTAG = "crewProfile";
 
     Button btnApply;
@@ -45,8 +45,8 @@ public class CrewProfileActivity extends MenuActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_crew_profile);
-        userController = UserController.getInstance();
-        me = userController.getCurrentUser();
+        //userController = UserController.getInstance();
+        //me = userController.getCurrentUser();
        crewLogic = new CrewLogic();
 
         crewImage = (ImageView) findViewById(R.id.myCrewImage);
@@ -66,9 +66,11 @@ public class CrewProfileActivity extends MenuActivity {
         Bundle extra = getIntent().getExtras();
         if(extra!=null) {
             crew = (Crew)extra.get("crew");
+            User user = (User)extra.get("LoggedInUser");
+            setUser(user);
             setupCrewInfo();
         }else{
-            Log.d(LOGTAG, "crew was null");
+            System.exit(0);
         }
 
 
@@ -112,7 +114,7 @@ public class CrewProfileActivity extends MenuActivity {
             }
         });
 
-        if(crewLogic.isCrewMember(crew, me.getId())){
+        if(crewLogic.isCrewMember(crew, user.getId())){
                 btnApply.setClickable(false);
                 btnChat.setClickable(true);
                 btnGame.setClickable(true);
@@ -121,7 +123,7 @@ public class CrewProfileActivity extends MenuActivity {
             btnChat.setClickable(false);
             btnGame.setClickable(false);
         }
-        if(!crewLogic.isCrewLeader(crew, me.getId())){
+        if(!crewLogic.isCrewLeader(crew, user.getId())){
             btnLeader.setVisibility(btnLeader.GONE);
         }
     }
@@ -129,6 +131,7 @@ public class CrewProfileActivity extends MenuActivity {
     private void goToActivity(Class activity) {
         Intent intent = new Intent(this, activity);
         intent.putExtra("crew", crew);
+        intent.putExtra("UserLoggedIn", user);
         startActivity(intent);
     }
 

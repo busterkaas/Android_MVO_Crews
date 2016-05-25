@@ -20,7 +20,7 @@ import java.util.Scanner;
  */
 public class UserRepository implements ICRUDRepository<User> {
 
-    private final String URL = "http://mvogamesjs-tasin.rhcloud.com/api/users";
+    private final String URL = "http://10.0.2.2:9000/api/users"; /*"http://mvogamesjs-tasin.rhcloud.com/api/users";*/
 
     private final String TAG = "USER";
 

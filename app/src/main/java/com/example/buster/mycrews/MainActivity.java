@@ -87,13 +87,23 @@ public class MainActivity extends AppCompatActivity {
 
         //simulate login
         if (validUser) {
+
+            Intent intent = new Intent(MainActivity.this, FindCrewActivity.class);
+            intent.putExtra("LoggedInUser", user);
+
+            startActivity(intent);
+
+
+            /*
             userController = UserController.getInstance();
             userController.userLogin(user);
+
 
             Log.d("MOJN", "My id: " + user.getId());
 
             Intent intent = new Intent(MainActivity.this, FindCrewActivity.class);
             startActivity(intent);
+            */
         } else {
             Toast.makeText(getApplicationContext(), "Invalid username or password", Toast.LENGTH_LONG).show();
         }

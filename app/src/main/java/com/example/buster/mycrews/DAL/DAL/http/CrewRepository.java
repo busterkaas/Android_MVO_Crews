@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.example.buster.mycrews.BE.Crew;
 import com.example.buster.mycrews.BE.CrewGameSuggestion;
+import com.example.buster.mycrews.BE.CrewMessage;
 import com.example.buster.mycrews.BE.Game;
 import com.example.buster.mycrews.BE.Platform;
 import com.example.buster.mycrews.BE.User;
@@ -24,7 +25,7 @@ import java.util.Scanner;
  */
 public class CrewRepository implements ICRUDRepository<Crew> {
 
-    private final String URL = "http://mvogamesjs-tasin.rhcloud.com/api/crews";
+    private final String URL = "http://10.0.2.2:9000/api/crews"; /*"http://mvogamesjs-tasin.rhcloud.com/api/crews";*/
 
     private final String TAG = "CREW";
 
@@ -104,6 +105,23 @@ public class CrewRepository implements ICRUDRepository<Crew> {
                     games.add(cgs);
 
                 }
+/*
+                JSONArray JSONMessages = d.getJSONArray("crewMessages");
+                ArrayList<CrewMessage> messages = new ArrayList<>();
+                for (int v = 0; v < JSONUsers.length(); v++) {
+
+                    JSONObject jsonUser = JSONMessages.getJSONObject(v).getJSONObject("user");
+                    String msgUserId = jsonUser.getString("_id");
+                    String msgUsername = jsonUser.getString("name");
+
+                    User msgUser = new User(msgUserId, msgUsername);
+
+                    String msgMessage = JSONMessages.getJSONObject(v).getString("message");
+
+                    CrewMessage crewMessage = new CrewMessage(msgUser, msgMessage);
+                    messages.add(crewMessage);
+
+                }*/
 
                 Crew crew = new Crew(crewId, crewName, crewImgUrl, leader, applicants, users, games);
 
@@ -169,65 +187,4 @@ public class CrewRepository implements ICRUDRepository<Crew> {
     public void delete(int id) throws Exception {
 
     }
-/*
-
-    public ArrayList<Crew> readAllUserCrews() throws Exception {
-        return m_usercrews;
-    }
-
-
-    public void loadAllUserCrews(String Id) throws Exception {
-        m_usercrews = new ArrayList<>();
-        try {
-            String result = getContent(URL + "/user/" + Id);
-
-            if (result == null) return;
-
-            JSONArray array = new JSONArray(result);
-
-            for (int i = 0; i < array.length(); i++) {
-                JSONObject d = array.getJSONObject(i);
-
-                String crewId = d.getString("_id");
-                String crewName = d.getString("name");
-                String crewImgUrl = d.getString("crewImgUrl");
-
-
-                JSONObject JSONleader = d.getJSONObject("leader");
-
-                User leader = new User(JSONleader.getString("_id"), JSONleader.getString("name"));
-
-                JSONArray JSONApplicants = d.getJSONArray("applicants");
-                ArrayList<User> applicants = new ArrayList<>();
-                for (int v = 0; v < JSONApplicants.length(); v++) {
-                    String userName = JSONApplicants.getJSONObject(v).getString("name");
-                    String userId = JSONApplicants.getJSONObject(v).getString("_id");
-                    User u = new User(userId, userName);
-                    applicants.add(u);
-                }
-
-                JSONArray JSONUsers = d.getJSONArray("users");
-                ArrayList<User> users = new ArrayList<>();
-                for (int v = 0; v < JSONUsers.length(); v++) {
-                    String userName = JSONUsers.getJSONObject(v).getString("name");
-                    String userId = JSONUsers.getJSONObject(v).getString("_id");
-                    User u = new User(userId, userName);
-                    users.add(u);
-                }
-
-                Crew crew = new Crew(crewId, crewName, crewImgUrl, leader, applicants, users);
-
-
-                m_usercrews.add(crew);
-            }
-            Log.d("CREWSIZE", "Size: IN LOAD "+ m_usercrews.size());
-
-        } catch (JSONException e) {
-            Log.e(TAG,
-                    "There was an error parsing the JSON", e);
-        } catch (Exception e) {
-            Log.d(TAG, "General exception in loadAllUserCrews " + e.getMessage());
-        }
-    }
-    */
 }
