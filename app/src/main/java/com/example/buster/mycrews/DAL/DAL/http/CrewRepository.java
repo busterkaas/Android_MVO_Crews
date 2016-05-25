@@ -3,6 +3,9 @@ package com.example.buster.mycrews.DAL.DAL.http;
 import android.util.Log;
 
 import com.example.buster.mycrews.BE.Crew;
+import com.example.buster.mycrews.BE.CrewGameSuggestion;
+import com.example.buster.mycrews.BE.Game;
+import com.example.buster.mycrews.BE.Platform;
 import com.example.buster.mycrews.BE.User;
 import com.example.buster.mycrews.DAL.ICRUDRepository;
 import com.example.buster.mycrews.DAL.IExtendedRepository;
@@ -15,6 +18,7 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Scanner;
 
 /**
@@ -73,7 +77,34 @@ public class CrewRepository implements IExtendedRepository<Crew> {
                     users.add(u);
                 }
 
-                Crew crew = new Crew(crewId, crewName, crewImgUrl, leader, applicants, users);
+                JSONArray JSONGames = d.getJSONArray("gameSuggestions");
+                ArrayList<CrewGameSuggestion> games = new ArrayList<>();
+                for (int v = 0; v < JSONGames.length(); v++) {
+                    String id = JSONGames.getJSONObject(v).getString("_id");
+                    String dateString  = JSONGames.getJSONObject(v).getString("expiration");
+
+
+                    JSONObject jsonGame = JSONGames.getJSONObject(v).getJSONObject("game");
+                    String gameTitle = jsonGame.getString("title");
+                    String gameInfo = jsonGame.getString("info");
+                    String coverURL = jsonGame.getString("coverUrl");
+
+                    Game game = new Game(gameTitle, gameInfo, coverURL);
+
+                   JSONObject jsonPlatform = JSONGames.getJSONObject(v).getJSONObject("platform");
+                    String pfName = jsonPlatform.getString("name");
+                    int price = jsonPlatform.getInt("price");
+
+                    Platform platform = new Platform(pfName, price);
+
+
+                    CrewGameSuggestion cgs = new CrewGameSuggestion(id, 0, dateString, game, platform);
+
+                    games.add(cgs);
+
+                }
+
+                Crew crew = new Crew(crewId, crewName, crewImgUrl, leader, applicants, users, games);
 
                 m_crews.add(crew);
             }

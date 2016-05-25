@@ -128,11 +128,12 @@ public class CrewProfileActivity extends MenuActivity {
 
     private void goToActivity(Class activity) {
         Intent intent = new Intent(this, activity);
+        intent.putExtra("crew", crew);
         startActivity(intent);
     }
 
     private void applyForMemberShip() {
-        Toast.makeText(this, "Lort", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "wow", Toast.LENGTH_SHORT).show();
     }
 
     void setupCrewInfo(){
