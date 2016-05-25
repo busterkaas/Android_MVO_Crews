@@ -133,7 +133,7 @@ public class CrewProfileActivity extends MenuActivity {
     }
 
     private void applyForMemberShip() {
-        Toast.makeText(this, "wow", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Applied for membership", Toast.LENGTH_SHORT).show();
     }
 
     void setupCrewInfo(){
