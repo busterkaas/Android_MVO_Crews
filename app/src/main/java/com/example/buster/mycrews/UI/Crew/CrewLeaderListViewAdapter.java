@@ -1,6 +1,7 @@
 package com.example.buster.mycrews.UI.Crew;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,12 +22,19 @@ public class CrewLeaderListViewAdapter extends BaseAdapter {
     private ArrayList<User> users;
     private static LayoutInflater inflater = null;
 
+    public void setUsers(ArrayList<User> users) {
+        this.users = users;
+    }
 
-    public CrewLeaderListViewAdapter(Context context, ArrayList<User> data)
+    private final String LOGTAG = "CrewLeaderListAdapter";
+    boolean isMember;
+
+    public CrewLeaderListViewAdapter(Context context, ArrayList<User> data, boolean isMember)
     {
         mContext = context;
         users = data;
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        this.isMember = isMember;
 
     }
 
@@ -51,10 +59,15 @@ public class CrewLeaderListViewAdapter extends BaseAdapter {
         View view = convertView;
 
         if(convertView==null){
-            view = inflater.inflate(R.layout.list_row, null);
+            view = inflater.inflate(R.layout.leader_list_row, null);
         }
 
-        TextView userName = (TextView) view.findViewById(R.id.userName);
+        TextView userName = (TextView) view.findViewById(R.id.tvuserName);
+
+
+        if(isMember){
+        }else{
+        }
 
         User c = users.get(position);
 
@@ -62,5 +75,9 @@ public class CrewLeaderListViewAdapter extends BaseAdapter {
 
 
         return view;
+    }
+
+    public void setMember(boolean member) {
+        isMember = member;
     }
 }

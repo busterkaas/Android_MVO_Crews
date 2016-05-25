@@ -11,17 +11,43 @@
     tools:context="com.example.buster.mycrews.UI.Crew.CrewLeaderActivity">
 
 
+    <Button
+        android:id="@+id/btnShowUsers"
+        android:text="Show users"
+        android:textSize="22px"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/btnShowApplicants"
+            android:layout_alignParentRight="true"
+            android:textSize="22px"
+            android:layout_marginLeft="85dp"
+            android:text="Show applicants"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+    <TextView
+android:id="@+id/txtWhatToSee"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/btnShowUsers"
+        android:text="WHAT TO SEE"
+        android:layout_marginTop="14dp"
+        android:textColor="@color/mvoOrange"
+        android:textSize="25dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
     <ListView
 
-        android:id="@+id/crewList"
-        android:layout_marginTop="30dp"
-        android:layout_below="@+id/etCrewSearch"
+        android:id="@+id/usersList"
+        android:layout_below="@+id/txtWhatToSee"
+        android:layout_marginTop="20dp"
         android:divider="#ff471a"
         android:dividerHeight="1dp"
-        android:layout_alignParentTop="true"
         android:listSelector="@drawable/list_selector"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"></ListView>
+        android:layout_height="wrap_content"></ListView>
 
 
 </RelativeLayout>
