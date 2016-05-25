@@ -3,7 +3,6 @@ package com.example.buster.mycrews.UI.User;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -75,6 +74,31 @@ public class MyProfileActivity extends MenuActivity {
         startActivityForResult(editUserProfileIntent, ACTIVITY_EDIT_PROFILE_REQUEST_CODE);
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        // handle the returned result from 'Camera intent'
+        if (requestCode == CAPTURE_PICTURE_REQUEST_CODE && resultCode == RESULT_OK) {
+            String filename = photoFile.toString();
+            displayPicture(filename);
+        }
+        // handle the returned result from 'edit user profile intent'
+        if (requestCode == ACTIVITY_EDIT_PROFILE_REQUEST_CODE && resultCode == RESULT_OK) {
+
+            // update the logged in users info
+            loggedInUser.setUserName("" + data.getStringExtra("userName"));
+            loggedInUser.setFirstName("" + data.getStringExtra("firstName"));
+            loggedInUser.setLastName("" + data.getStringExtra("lastName"));
+            loggedInUser.setPhoneNumber(Integer.parseInt(data.getStringExtra("phoneNumber")));
+
+            // update textviews with data from the newly updated logged in user
+            tvUserName.setText("" + loggedInUser.getUserName());
+            tvFirstName.setText("" + loggedInUser.getFirstName());
+            tvLastName.setText("" + loggedInUser.getLastName());
+            tvPhoneNumber.setText("" + loggedInUser.getPhoneNumber());
+        }
+    }
+
     private void populateTextViews() {
         tvUserName.setText("" + loggedInUser.getUserName());
         tvFirstName.setText("" + loggedInUser.getFirstName());
@@ -125,23 +149,6 @@ public class MyProfileActivity extends MenuActivity {
         }
         Toast.makeText(getApplicationContext(), "No SDcard mounted", Toast.LENGTH_SHORT).show();
         return null;
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        // handle the returned result from 'Camera intent'
-        if (requestCode == CAPTURE_PICTURE_REQUEST_CODE && resultCode == RESULT_OK) {
-            String filename = photoFile.toString();
-            displayPicture(filename);
-        }
-        // handle the returned result from 'edit user profile intent'
-        if (requestCode == ACTIVITY_EDIT_PROFILE_REQUEST_CODE && resultCode == RESULT_OK) {
-            tvUserName.setText("" + data.getStringExtra("userName"));
-            tvFirstName.setText("" + data.getStringExtra("firstName"));
-            tvLastName.setText("" + data.getStringExtra("lastName"));
-            tvPhoneNumber.setText("" + data.getStringExtra("phoneNumber"));
-        }
     }
 
     private void displayPicture(String filename) {

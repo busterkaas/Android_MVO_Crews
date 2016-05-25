@@ -3,14 +3,18 @@ package com.example.buster.mycrews.UI.User;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.provider.Settings;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
 import com.example.buster.mycrews.Controller.UserController;
+import com.example.buster.mycrews.DAL.SendJsonDataToServer;
 import com.example.buster.mycrews.MenuActivity;
 import com.example.buster.mycrews.R;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  * Created by Hardy Drachmann on 17-05-2016.
@@ -37,24 +41,35 @@ public class MyEditProfileActivity extends MenuActivity {
             public void onClick(View v) {
                 // update user in mongo database
                 updateUserInDatabase();
-
-                // update 'MyProfileActivity.class' by creating an intent and putting in the new data
-                Intent sendDataBackIntent = new Intent(getApplicationContext(), MyProfileActivity.class);
-                sendDataBackIntent.putExtra("userName", etUserName.getText().toString());
-                sendDataBackIntent.putExtra("firstName", etFirstName.getText().toString());
-                sendDataBackIntent.putExtra("lastName", etLastName.getText().toString());
-                sendDataBackIntent.putExtra("phoneNumber", etPhoneNumber.getText().toString());
-
-                // populate result and return it to 'MyProfileActivity.class
-                setResult(RESULT_OK, sendDataBackIntent);
-                finish();
             }
         });
     }
 
     private void updateUserInDatabase() {
-        // go through gateway and update user in mongo database
-        System.out.print("TO DO : UPDATE USER IN MONGO DATABASE");
+        JSONObject userToUpdate = new JSONObject();
+        try {
+            userToUpdate.put("name", etUserName.getText().toString());
+            userToUpdate.put("firstName", etFirstName.getText().toString());
+            userToUpdate.put("lastName", etLastName.getText().toString());
+            userToUpdate.put("phoneNumber", Integer.parseInt(etPhoneNumber.getText().toString()));
+            Log.d("err", "USER: " + userToUpdate);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        // call to async class in DAL-layer
+        new SendJsonDataToServer().execute(String.valueOf(userToUpdate));
+
+        // update 'MyProfileActivity.class' by creating an intent and putting in the new data
+        Intent sendDataBackIntent = new Intent(getApplicationContext(), MyProfileActivity.class);
+        sendDataBackIntent.putExtra("userName", etUserName.getText().toString());
+        sendDataBackIntent.putExtra("firstName", etFirstName.getText().toString());
+        sendDataBackIntent.putExtra("lastName", etLastName.getText().toString());
+        sendDataBackIntent.putExtra("phoneNumber", etPhoneNumber.getText().toString());
+
+        // populate result and return it to 'MyProfileActivity.class
+        setResult(RESULT_OK, sendDataBackIntent);
+
+        finish();
     }
 
     private void populateEditTexts() {

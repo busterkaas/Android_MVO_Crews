@@ -28,7 +28,7 @@
         <activity android:name=".UI.User.MyEditProfileActivity" />
         <activity android:name=".UI.Crew.CrewChatActivity" />
         <activity android:name=".UI.Crew.CrewGamesActivity" />
-        <activity android:name=".UI.Crew.CrewLeaderActivity"></activity>
+        <activity android:name=".UI.Crew.CrewLeaderActivity" />
     </application>
 
 </manifest>
