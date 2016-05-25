@@ -2,7 +2,6 @@ package com.example.buster.mycrews.UI.Crew;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
@@ -10,12 +9,11 @@ import android.widget.EditText;
 import android.widget.ListView;
 
 import com.example.buster.mycrews.BE.Crew;
-import com.example.buster.mycrews.BE.User;
 import com.example.buster.mycrews.BLL.Manager.CrewManager;
-import com.example.buster.mycrews.DAL.DAL.http.CrewRepository;
 import com.example.buster.mycrews.InitializeTasks.InitializeTaskCrews;
 import com.example.buster.mycrews.MenuActivity;
 import com.example.buster.mycrews.R;
+import com.example.buster.mycrews.UI.ListViewAdapters.FindCrewListViewAdapter;
 
 import java.util.ArrayList;
 
@@ -86,25 +84,6 @@ public class FindCrewActivity extends MenuActivity {
                 crewDetails(position);
             }
         });
-
-
-        for (Crew c: crews) {
-            Log.d("CCC", "CREWNAME: " + c.getCrewName());
-            Log.d("CCC", "LEADER: " +c.getCrewLeader().getUserName());
-            for (User u: c.getCrewApplicants()) {
-                Log.d("CCC", "APPLICANT: "+ u.getUserName());
-            }
-            for (User u: c.getCrewMembers()) {
-                Log.d("CCC", "USER: "+ u.getUserName());
-            }
-        }
-
-
-
-
-
-
-
 
     }
 
