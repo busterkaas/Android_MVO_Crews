@@ -9,7 +9,7 @@ public interface IManager<T> {
 
     ArrayList<T> getAll() throws Exception;
 
-    void loadAll() throws Exception;
+    void loadAll(String id) throws Exception;
 
     T create(T t) throws Exception;
 

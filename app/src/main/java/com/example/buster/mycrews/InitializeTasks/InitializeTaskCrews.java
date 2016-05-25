@@ -18,18 +18,20 @@ public class InitializeTaskCrews extends AsyncTask<
 {
 
     FindCrewActivity m_context;
+    String userId;
 
-    public InitializeTaskCrews(FindCrewActivity context)
+    public InitializeTaskCrews(FindCrewActivity context, String userId)
     {
         m_context = context;
+        this.userId = userId;
     }
 
     @Override
     protected ArrayList<Crew> doInBackground(CrewManager... ms) {
         // params comes from the execute()
         try {
-            ms[0].loadAll();
-            return ms[0].getAll();
+            ms[0].loadAll(userId);
+            return ms[0].readAll();
         }catch (Exception e){
          return null;
         }

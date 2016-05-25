@@ -29,7 +29,7 @@ public interface ICRUDRepository<T> {
      * Update object in database by intputobject
      * @throws Exception
      */
-    public void update(T t) throws Exception;
+    public T update(T t) throws Exception;
 
     /**
      * deletes object in database by id
@@ -41,7 +41,7 @@ public interface ICRUDRepository<T> {
      * load all objects
      * @throws Exception
      */
-    public void loadAll() throws Exception;
+    public void loadAll(String id) throws Exception;
 
 
 }

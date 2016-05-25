@@ -1,6 +1,7 @@
 package com.example.buster.mycrews.DAL.DAL.http;
 
 import android.util.Log;
+
 import com.example.buster.mycrews.BE.User;
 import com.example.buster.mycrews.DAL.ICRUDRepository;
 
@@ -25,12 +26,11 @@ public class UserRepository implements ICRUDRepository<User> {
 
     ArrayList<User> m_users;
 
-    public UserRepository(){
+    public UserRepository() {
         m_users = new ArrayList<User>();
     }
 
-    public void loadAll()
-    {
+    public void loadAll(String userId) {
         try {
             String result = getContent(URL);
 
@@ -43,7 +43,7 @@ public class UserRepository implements ICRUDRepository<User> {
                 try {
                     User user = new User(d.getString("_id"), d.getString("name"), d.getString("firstName"), d.getString("lastName"), d.getInt("phoneNumber"));
                     m_users.add(user);
-                }catch (JSONException e){
+                } catch (JSONException e) {
                     Log.d(TAG, e.getMessage());
                 }
             }
@@ -51,21 +51,19 @@ public class UserRepository implements ICRUDRepository<User> {
         } catch (JSONException e) {
             Log.e(TAG,
                     "There was an error parsing the JSON", e);
-        } catch (Exception e)
-        {  Log.d(TAG, "General exception in loadAll " + e.getMessage());
+        } catch (Exception e) {
+            Log.d(TAG, "General exception in loadAll " + e.getMessage());
         }
     }
 
 
-
-
     /**
      * Get the content of the url as a string. Based on using a scanner.
+     *
      * @param urlString - the url must return data typical in either json, xml, csv etc..
      * @return the content as a string. Null is something goes wrong.
      */
-    private String getContent(String urlString)
-    {
+    private String getContent(String urlString) {
         StringBuilder sb = new StringBuilder();
         try {
             java.net.URL url = new URL(urlString);
@@ -75,8 +73,7 @@ public class UserRepository implements ICRUDRepository<User> {
                 String line = s.nextLine();
                 sb.append(line);
             }
-        }
-        catch (MalformedURLException e) {
+        } catch (MalformedURLException e) {
             e.printStackTrace();
             return null;
         } catch (IOException e) {
@@ -103,8 +100,8 @@ public class UserRepository implements ICRUDRepository<User> {
     }
 
     @Override
-    public void update(User user) throws Exception {
-
+    public User update(User user) throws Exception {
+        return null;
     }
 
     @Override
