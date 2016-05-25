@@ -1,4 +1,4 @@
-package com.example.buster.mycrews.UI.Crew;
+package com.example.buster.mycrews.UI.ListViewAdapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;

@@ -1,39 +1,46 @@
-package com.example.buster.mycrews.UI.Crew;
+package com.example.buster.mycrews.UI.ListViewAdapters;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.buster.mycrews.BE.Crew;
+import com.example.buster.mycrews.BE.User;
 import com.example.buster.mycrews.R;
 
 import java.util.ArrayList;
 
 /**
- * Created by Buster on 10-05-2016.
+ * Created by Kennie on 24-05-2016.
  */
-public class FindCrewListViewAdapter extends BaseAdapter {
-
+public class CrewLeaderListViewAdapter extends BaseAdapter {
     private Context mContext;
-    private ArrayList<Crew> crews;
+    private ArrayList<User> users;
     private static LayoutInflater inflater = null;
 
+    public void setUsers(ArrayList<User> users) {
+        this.users = users;
+    }
 
-    public FindCrewListViewAdapter(Context context, ArrayList<Crew> data)
+    private final String LOGTAG = "CrewLeaderListAdapter";
+    boolean isMember;
+
+    public CrewLeaderListViewAdapter(Context context, ArrayList<User> data, boolean isMember)
     {
         mContext = context;
-        crews = data;
+        users = data;
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        this.isMember = isMember;
 
     }
 
     @Override
     public int getCount() {
-        return crews.size();
+        return users.size();
     }
 
     @Override
@@ -52,23 +59,25 @@ public class FindCrewListViewAdapter extends BaseAdapter {
         View view = convertView;
 
         if(convertView==null){
-            view = inflater.inflate(R.layout.list_row, null);
+            view = inflater.inflate(R.layout.leader_list_row, null);
         }
 
-        TextView crewName = (TextView) view.findViewById(R.id.crewName);
-        TextView crewLeader = (TextView) view.findViewById(R.id.leaderName);
+        TextView userName = (TextView) view.findViewById(R.id.tvuserName);
 
-        Crew c = crews.get(position);
 
-        crewName.setText(c.getCrewName());
+        if(isMember){
+        }else{
+        }
 
-        crewLeader.setText(c.getCrewLeader().getUserName());
+        User c = users.get(position);
+
+        userName.setText(c.getUserName());
 
 
         return view;
     }
 
-    public void searchCrewList(ArrayList<Crew> crews){
-        this.crews = crews;
+    public void setMember(boolean member) {
+        isMember = member;
     }
 }

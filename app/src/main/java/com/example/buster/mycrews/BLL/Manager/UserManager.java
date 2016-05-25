@@ -31,8 +31,8 @@ public class UserManager implements IManager<User> {
     }
 
     @Override
-    public void loadAll() throws Exception {
-        facade.getUserRepository().loadAll();
+    public void loadAll(String userId) throws Exception {
+        facade.getUserRepository().loadAll(userId);
     }
 
     @Override

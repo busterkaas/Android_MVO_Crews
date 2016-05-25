@@ -6,15 +6,12 @@
     android:layout_height="45dp">
 
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+
 
     <TextView
-        android:id="@+id/userName"
+        android:id="@+id/tvuserName"
         android:text="Username"
-        android:textStyle="bold"
-        android:textSize="20sp"
+        android:textSize="39px"
         android:textColor="#e8cfcfcf"
         android:layout_marginTop="2dp"
         android:layout_marginLeft="10dp"
@@ -26,21 +23,18 @@
     <Button
         android:id="@+id/accept"
         android:layout_width="40dp"
+        android:layout_toLeftOf="@+id/decline"
         android:layout_height="wrap_content"
         android:text="+"
-        android:textStyle="bold"
-        android:enabled="false"
-        android:visibility="visible" />
+        android:textStyle="bold"/>
 
     <Button
+        android:layout_alignParentRight="true"
         android:id="@+id/decline"
         android:text="-"
         android:textStyle="bold"
         android:layout_width="40dp"
         android:layout_height="wrap_content"/>
-
-
-    </LinearLayout>
 
 
 </RelativeLayout>

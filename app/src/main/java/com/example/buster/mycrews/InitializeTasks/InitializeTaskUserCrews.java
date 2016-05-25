@@ -32,8 +32,8 @@ public class InitializeTaskUserCrews extends AsyncTask<
     protected ArrayList<Crew> doInBackground(CrewManager... ms) {
         // params comes from the execute()
         try {
-            ms[0].loadAllUserCrews(userId);
-            return ms[0].readAllUserCrews();
+            ms[0].loadAll(userId);
+            return ms[0].readAll();
         }catch (Exception e){
             return null;
         }
@@ -44,6 +44,5 @@ public class InitializeTaskUserCrews extends AsyncTask<
     @Override
     protected void onPostExecute(final ArrayList<Crew> crews) {
         m_context.instantiateUserCrews(crews);
-        Log.d("CREWSIZE", "Size: "+ crews.size());
     }
 }

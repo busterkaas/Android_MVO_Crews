@@ -6,12 +6,6 @@
     android:layout_height="wrap_content">
 
 
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal">
-
-
     <LinearLayout
         android:id="@+id/imgLayout"
         android:padding="3dp"
@@ -24,23 +18,16 @@
         <ImageView
             android:id="@+id/list_gameImg"
             android:layout_margin="1dp"
-            android:layout_width="60dp"
+            android:layout_width="100dp"
             android:layout_height="100dp"/>
-
-
     </LinearLayout>
 
-<LinearLayout
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
     <TextView
         android:id="@+id/gameTitle"
         android:text="Game Title"
         android:textColor="#e8cfcfcf"
-        android:layout_marginTop="15dp"
-        android:layout_toRightOf="@+id/imgLayout"
-        android:layout_marginRight="35dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="115dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
@@ -49,26 +36,25 @@
         android:id="@+id/gameGenre"
         android:text="Game Genre"
         android:textColor="#e8cfcfcf"
-        android:layout_marginTop="15dp"
-        android:layout_toRightOf="@+id/gameTitle"
+        android:layout_marginTop="25dp"
+        android:layout_below="@+id/gameTitle"
+        android:layout_marginLeft="115dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
-</LinearLayout>
     <Button
 
         android:id="@+id/btnJoin"
         android:text="Join"
-        android:layout_marginLeft="50dp"
+        android:layout_marginLeft="60dp"
         android:layout_alignParentRight="true"
         android:layout_marginRight="10dp"
-        android:layout_marginTop="7dp"
+        android:layout_marginTop="25dp"
         android:textColor="#e8ffffff"
         android:background="@color/mvoOrange"
         android:textStyle="bold"
         android:gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-</LinearLayout>
+        android:layout_width="70dp"
+        android:layout_height="50dp" />
 
 
 </RelativeLayout>

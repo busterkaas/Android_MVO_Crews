@@ -5,4 +5,5 @@
     <color name="colorAccent">#ff471a</color>
     <color name="mvoOrange">#ff471a</color>
     <color name="mvoWhite">#ffffff</color>
+    <color name="chatBG">#a6a6a6</color>
 </resources>

@@ -8,7 +8,6 @@ import com.example.buster.mycrews.BE.Game;
 import com.example.buster.mycrews.BE.Platform;
 import com.example.buster.mycrews.BE.User;
 import com.example.buster.mycrews.DAL.ICRUDRepository;
-import com.example.buster.mycrews.DAL.IExtendedRepository;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -18,31 +17,33 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Scanner;
 
 /**
  * Created by Buster on 10-05-2016.
  */
-public class CrewRepository implements IExtendedRepository<Crew> {
+public class CrewRepository implements ICRUDRepository<Crew> {
 
     private final String URL = "http://mvogamesjs-tasin.rhcloud.com/api/crews";
 
     private final String TAG = "CREW";
 
     ArrayList<Crew> m_crews;
-    ArrayList<Crew> m_usercrews;
 
 
     public CrewRepository() {
 
     }
 
-    public void loadAll() {
+    public void loadAll(String id) {
         m_crews = new ArrayList<Crew>();
+        String result = "";
         try {
-            String result = getContent(URL);
-
+            if(id!=null){
+                result = getContent(URL+ "/user/" + id);
+            }else {
+                result = getContent(URL);
+            }
             if (result == null) return;
 
             JSONArray array = new JSONArray(result);
@@ -80,7 +81,7 @@ public class CrewRepository implements IExtendedRepository<Crew> {
                 JSONArray JSONGames = d.getJSONArray("gameSuggestions");
                 ArrayList<CrewGameSuggestion> games = new ArrayList<>();
                 for (int v = 0; v < JSONGames.length(); v++) {
-                    String id = JSONGames.getJSONObject(v).getString("_id");
+                    String gsId = JSONGames.getJSONObject(v).getString("_id");
                     String dateString  = JSONGames.getJSONObject(v).getString("expiration");
 
 
@@ -98,7 +99,7 @@ public class CrewRepository implements IExtendedRepository<Crew> {
                     Platform platform = new Platform(pfName, price);
 
 
-                    CrewGameSuggestion cgs = new CrewGameSuggestion(id, 0, dateString, game, platform);
+                    CrewGameSuggestion cgs = new CrewGameSuggestion(gsId, 0, dateString, game, platform);
 
                     games.add(cgs);
 
@@ -160,21 +161,21 @@ public class CrewRepository implements IExtendedRepository<Crew> {
     }
 
     @Override
-    public void update(Crew crew) throws Exception {
-
+    public Crew update(Crew crew) throws Exception {
+        return null;
     }
 
     @Override
     public void delete(int id) throws Exception {
 
     }
+/*
 
-    @Override
     public ArrayList<Crew> readAllUserCrews() throws Exception {
         return m_usercrews;
     }
 
-    @Override
+
     public void loadAllUserCrews(String Id) throws Exception {
         m_usercrews = new ArrayList<>();
         try {
@@ -228,4 +229,5 @@ public class CrewRepository implements IExtendedRepository<Crew> {
             Log.d(TAG, "General exception in loadAllUserCrews " + e.getMessage());
         }
     }
+    */
 }

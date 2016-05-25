@@ -1,16 +1,15 @@
 package com.example.buster.mycrews.BLL.Manager;
 
 import com.example.buster.mycrews.BE.Crew;
-import com.example.buster.mycrews.DAL.DAL.http.CrewRepository;
 import com.example.buster.mycrews.DAL.DALFacade;
-import com.example.buster.mycrews.DAL.IExtendedRepository;
+import com.example.buster.mycrews.DAL.ICRUDRepository;
 
 import java.util.ArrayList;
 
 /**
  * Created by Buster on 24-05-2016.
  */
-public class CrewManager implements IExtendedCrewManager<Crew> {
+public class CrewManager implements ICRUDRepository<Crew> {
 
     private static CrewManager instance = null;
     DALFacade facade;
@@ -26,15 +25,9 @@ public class CrewManager implements IExtendedCrewManager<Crew> {
         return instance;
     }
 
-
     @Override
-    public ArrayList<Crew> getAll() throws Exception {
-        return facade.getCrewRepository().readAll();
-    }
-
-    @Override
-    public void loadAll() throws Exception {
-        facade.getCrewRepository().loadAll();
+    public void loadAll(String userId) throws Exception {
+        facade.getCrewRepository().loadAll(userId);
     }
 
     @Override
@@ -43,32 +36,25 @@ public class CrewManager implements IExtendedCrewManager<Crew> {
     }
 
     @Override
+    public ArrayList<Crew> readAll() throws Exception {
+        return facade.getCrewRepository().readAll();
+    }
+
+    @Override
+    public Crew read(int id) throws Exception {
+        return null;
+    }
+
+
     public Crew update(Crew crew) throws Exception {
         return null;
     }
 
     @Override
-    public Crew update(Crew crew, String id) throws Exception {
-        return null;
+    public void delete(int id) throws Exception {
+
     }
 
-    @Override
-    public boolean delete(Crew crew) throws Exception {
-        return false;
-    }
 
-    @Override
-    public boolean delete(String id) throws Exception {
-        return false;
-    }
 
-    @Override
-    public ArrayList<Crew> readAllUserCrews() throws Exception {
-        return facade.getCrewRepository().readAllUserCrews();
-    }
-
-    @Override
-    public void loadAllUserCrews(String userId) throws Exception {
-        facade.getCrewRepository().loadAllUserCrews(userId);
-    }
 }
