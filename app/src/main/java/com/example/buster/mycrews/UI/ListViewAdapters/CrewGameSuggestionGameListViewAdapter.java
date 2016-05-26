@@ -11,7 +11,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.buster.mycrews.BE.Crew;
 import com.example.buster.mycrews.BE.CrewGameSuggestion;
 import com.example.buster.mycrews.BLL.Manager.ImageDownloader;
 import com.example.buster.mycrews.R;
@@ -26,11 +25,9 @@ public class CrewGameSuggestionGameListViewAdapter extends BaseAdapter {
 
     private Context mContext;
     private ArrayList<CrewGameSuggestion> gameSuggestions;
-    Crew crew;
     private static LayoutInflater inflater = null;
 
     public CrewGameSuggestionGameListViewAdapter(Context context, ArrayList<CrewGameSuggestion> data){
-
         mContext = context;
         gameSuggestions = data;
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -75,9 +72,7 @@ public class CrewGameSuggestionGameListViewAdapter extends BaseAdapter {
         btnJoin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                     Toast.makeText(mContext, "You have joined the game", Toast.LENGTH_SHORT).show();
-
 
             }
         });
