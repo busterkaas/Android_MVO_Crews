@@ -18,6 +18,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
+    User userLogin = null;
     private ArrayList<User> users;
     UserManager userManager;
 
@@ -63,6 +64,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         getUsers();
+        userLogin = null;
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        getUsers();
+        userLogin = null;
     }
 
     public void getUsers() {
@@ -75,13 +84,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     void login() {
-        User user = null;
+
         boolean validUser = false;
         String myUsername = etUsername.getText().toString();
 
         for (User u : users) {
             if (u.getUserName().equals(myUsername)) {
-                user = u;
+                userLogin = u;
                 validUser = true;
             }
         }
@@ -90,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
         if (validUser) {
 
             Intent intent = new Intent(MainActivity.this, MyProfileActivity.class);
-            intent.putExtra("LoggedInUser", user);
+            intent.putExtra("LoggedInUser", userLogin);
 
             startActivity(intent);
 

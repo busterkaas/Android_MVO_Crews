@@ -2,10 +2,6 @@ package com.example.buster.mycrews.UI.ListViewAdapters;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.media.Image;
-import android.os.AsyncTask;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,13 +13,9 @@ import android.widget.Toast;
 
 import com.example.buster.mycrews.BE.Crew;
 import com.example.buster.mycrews.BE.CrewGameSuggestion;
-import com.example.buster.mycrews.BE.User;
-import com.example.buster.mycrews.BLL.Manager.GenerelLogic.CrewLogic;
 import com.example.buster.mycrews.BLL.Manager.ImageDownloader;
-import com.example.buster.mycrews.Controller.UserController;
 import com.example.buster.mycrews.R;
 
-import java.io.InputStream;
 import java.util.ArrayList;
 
 /**
@@ -35,16 +27,11 @@ public class CrewGameSuggestionGameListViewAdapter extends BaseAdapter {
     private Context mContext;
     private ArrayList<CrewGameSuggestion> gameSuggestions;
     Crew crew;
-    User me;
-    UserController userController;
-    CrewLogic crewLogic;
     private static LayoutInflater inflater = null;
 
     public CrewGameSuggestionGameListViewAdapter(Context context, ArrayList<CrewGameSuggestion> data){
 
         mContext = context;
-        me = userController.getCurrentUser();
-        crewLogic = new CrewLogic();
         gameSuggestions = data;
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
@@ -89,11 +76,9 @@ public class CrewGameSuggestionGameListViewAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
 
-                if(crewLogic.hasApplied(crew, me.getId())){
                     Toast.makeText(mContext, "You have joined the game", Toast.LENGTH_SHORT).show();
-                }else{
-                    Toast.makeText(mContext, "You have already Applied", Toast.LENGTH_SHORT).show();
-                }
+
+
             }
         });
         return view;
