@@ -24,7 +24,7 @@ import java.util.Scanner;
  */
 public class CrewRepository implements ICRUDRepository<Crew> {
 
-    private final String URL = "http://mvogamesjs-tasin.rhcloud.com/api/crews";
+    private final String URL = "http://mvogames-hardydrachmann.rhcloud.com/api/crews/";
 
     private final String TAG = "CREW";
 
@@ -39,15 +39,15 @@ public class CrewRepository implements ICRUDRepository<Crew> {
         m_crews = new ArrayList<Crew>();
         String result = "";
         try {
-            if(id!=null){
-                result = getContent(URL+ "/user/" + id);
-            }else {
+            if (id != null) {
+                result = getContent(URL + "/user/" + id);
+            } else {
                 result = getContent(URL);
             }
             if (result == null) return;
 
             JSONArray array = new JSONArray(result);
-            Log.d(TAG, "loadAll: " +array);
+            Log.d(TAG, "loadAll: " + array);
             for (int i = 0; i < array.length(); i++) {
                 JSONObject d = array.getJSONObject(i);
 
@@ -82,7 +82,7 @@ public class CrewRepository implements ICRUDRepository<Crew> {
                 ArrayList<CrewGameSuggestion> games = new ArrayList<>();
                 for (int v = 0; v < JSONGames.length(); v++) {
                     String gsId = JSONGames.getJSONObject(v).getString("_id");
-                    String dateString  = JSONGames.getJSONObject(v).getString("expiration");
+                    String dateString = JSONGames.getJSONObject(v).getString("expiration");
 
 
                     JSONObject jsonGame = JSONGames.getJSONObject(v).getJSONObject("game");
@@ -92,7 +92,7 @@ public class CrewRepository implements ICRUDRepository<Crew> {
 
                     Game game = new Game(gameTitle, gameInfo, coverURL);
 
-                   JSONObject jsonPlatform = JSONGames.getJSONObject(v).getJSONObject("platform");
+                    JSONObject jsonPlatform = JSONGames.getJSONObject(v).getJSONObject("platform");
                     String pfName = jsonPlatform.getString("name");
                     int price = jsonPlatform.getInt("price");
 
