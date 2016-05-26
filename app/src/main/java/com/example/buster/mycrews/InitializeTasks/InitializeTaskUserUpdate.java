@@ -5,10 +5,7 @@ import android.util.Log;
 
 import com.example.buster.mycrews.BE.User;
 import com.example.buster.mycrews.BLL.Manager.UserManager;
-import com.example.buster.mycrews.MainActivity;
 import com.example.buster.mycrews.UI.User.MyEditProfileActivity;
-
-import java.util.ArrayList;
 
 /**
  * Created by Buster on 26-05-2016.

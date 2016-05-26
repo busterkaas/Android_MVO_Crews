@@ -48,6 +48,7 @@ public class CrewRepository implements ICRUDRepository<Crew> {
             JSONArray array = new JSONArray(result);
             Log.d(TAG, "loadAll: " + array);
             for (int i = 0; i < array.length(); i++) {
+
                 JSONObject d = array.getJSONObject(i);
 
                 String crewId = d.getString("_id");
@@ -129,7 +130,6 @@ public class CrewRepository implements ICRUDRepository<Crew> {
             Log.d(TAG, "General exception in loadAll " + e.getMessage());
         }
     }
-
 
     /**
      * Get the content of the url as a string. Based on using a scanner.

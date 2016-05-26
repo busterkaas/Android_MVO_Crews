@@ -109,6 +109,7 @@ public class MyCrewsActivity extends MenuActivity {
             startActivity(intent);
         } else {
             intent = new Intent(MyCrewsActivity.this, FindCrewActivity.class);
+            intent.putExtra("LoggedInUser", loggedInUser);
             startActivity(intent);
         }
     }

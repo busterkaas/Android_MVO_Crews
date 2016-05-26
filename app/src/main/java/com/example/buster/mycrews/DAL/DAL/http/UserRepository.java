@@ -42,6 +42,7 @@ public class UserRepository implements ICRUDRepository<User> {
     }
 
     public void loadAll(String userId) {
+        m_users = new ArrayList<User>();
         try {
             String result = getContent(URL);
 
@@ -52,13 +53,18 @@ public class UserRepository implements ICRUDRepository<User> {
             for (int i = 0; i < array.length(); i++) {
                 JSONObject d = array.getJSONObject(i);
                 try {
-                    User user = new User(d.getString("_id"), d.getString("name"), d.getString("firstName"), d.getString("lastName"), d.getInt("phoneNumber"));
+                    String idd = d.getString("_id");
+                    String username = d.getString("name");
+                    String firstname = d.getString("firstName");
+                    String lastname = d.getString("lastName");
+                    int phonenumber = d.getInt("phoneNumber");
+
+                    User user = new User(idd, username, firstname, lastname, phonenumber);
                     m_users.add(user);
                 } catch (JSONException e) {
                     Log.d(TAG, e.getMessage());
                 }
             }
-
         } catch (JSONException e) {
             Log.e(TAG,
                     "There was an error parsing the JSON", e);
