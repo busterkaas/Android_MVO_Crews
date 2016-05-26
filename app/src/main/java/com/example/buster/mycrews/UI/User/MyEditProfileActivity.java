@@ -3,12 +3,14 @@ package com.example.buster.mycrews.UI.User;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.provider.Settings;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
-import com.example.buster.mycrews.Controller.UserController;
+import com.example.buster.mycrews.BE.User;
+import com.example.buster.mycrews.BLL.Manager.UserManager;
+import com.example.buster.mycrews.InitializeTasks.InitializeTaskUserUpdate;
 import com.example.buster.mycrews.MenuActivity;
 import com.example.buster.mycrews.R;
 
@@ -17,14 +19,24 @@ import com.example.buster.mycrews.R;
  */
 public class MyEditProfileActivity extends MenuActivity {
 
-    private String loggedInUserId = UserController.getInstance().getCurrentUser().getId();
+    //private String loggedInUserId = UserController.getInstance().getCurrentUser().getId();
     private ImageButton btnSaveProfile;
     private EditText etUserName, etFirstName, etLastName, etPhoneNumber;
+
+    UserManager userManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_my_profile);
+        userManager = UserManager.getInstance();
+
+        Bundle extra = getIntent().getExtras();
+        if(extra!=null) {
+            loggedInUser = (User)extra.get("LoggedInUser");
+        }else{
+            System.exit(0);
+        }
 
         // Lock the screen orientation to portrait (turn-safe activity)
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
@@ -37,25 +49,26 @@ public class MyEditProfileActivity extends MenuActivity {
             public void onClick(View v) {
                 // update user in mongo database
                 updateUserInDatabase();
-
-                // update 'MyProfileActivity.class' by creating an intent and putting in the new data
-                Intent sendDataBackIntent = new Intent(getApplicationContext(), MyProfileActivity.class);
-                sendDataBackIntent.putExtra("userName", etUserName.getText().toString());
-                sendDataBackIntent.putExtra("firstName", etFirstName.getText().toString());
-                sendDataBackIntent.putExtra("lastName", etLastName.getText().toString());
-                sendDataBackIntent.putExtra("phoneNumber", etPhoneNumber.getText().toString());
-
-                // populate result and return it to 'MyProfileActivity.class
-                setResult(RESULT_OK, sendDataBackIntent);
-                finish();
             }
         });
     }
 
     private void updateUserInDatabase() {
-        // go through gateway and update user in mongo database
-        System.out.print("TO DO : UPDATE USER IN MONGO DATABASE");
+        User userToUpdate;
+        String id = loggedInUser.getId();
+        String username = etUserName.getText().toString();
+        String firstname = etFirstName.getText().toString();
+        String lastname = etLastName.getText().toString();
+        int phone = Integer.parseInt(etPhoneNumber.getText().toString());
+
+        userToUpdate = new User(id, username, firstname, lastname, phone);
+        Log.d("USERR", "ONE");
+        InitializeTaskUserUpdate task = new InitializeTaskUserUpdate(this, userToUpdate);
+        task.execute(userManager);
+
     }
+
+
 
     private void populateEditTexts() {
         etUserName.setText(getIntent().getStringExtra("userName"));
@@ -70,5 +83,22 @@ public class MyEditProfileActivity extends MenuActivity {
         etFirstName = (EditText) findViewById(R.id.etFirstname);
         etLastName = (EditText) findViewById(R.id.etLastname);
         etPhoneNumber = (EditText) findViewById(R.id.etPhoneNumber);
+    }
+
+    public void updatedUser(User user) {
+        loggedInUser = user;
+        // update 'MyProfileActivity.class' by creating an intent and putting in the new data
+        Intent sendDataBackIntent = new Intent(getApplicationContext(), MyProfileActivity.class);
+        sendDataBackIntent.putExtra("userName", user.getUserName());
+        sendDataBackIntent.putExtra("firstName", user.getFirstName());
+        sendDataBackIntent.putExtra("lastName", user.getLastName());
+        sendDataBackIntent.putExtra("phoneNumber", String.valueOf(user.getPhoneNumber()));
+
+        // populate result and return it to 'MyProfileActivity.class
+/*
+       setResult(RESULT_OK, sendDataBackIntent);
+
+        finish();
+        */
     }
 }

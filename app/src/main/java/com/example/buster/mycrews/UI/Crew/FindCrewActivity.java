@@ -41,8 +41,7 @@ public class FindCrewActivity extends MenuActivity {
 
         Bundle extra = getIntent().getExtras();
         if(extra!=null) {
-            User user = (User)extra.get("LoggedInUser");
-            setUser(user);
+            loggedInUser = (User)extra.get("LoggedInUser");
         }else{
             System.exit(0);
         }
@@ -67,11 +66,6 @@ public class FindCrewActivity extends MenuActivity {
 
     }
 
-    @Override
-    public void setUser(User user) {
-        super.setUser(user);
-    }
-
     private void seachCrewsList(){
         crewSearch = new ArrayList<>();
         String search = etSearchField.getText().toString();
@@ -90,7 +84,7 @@ public class FindCrewActivity extends MenuActivity {
         Intent intent = new Intent(FindCrewActivity.this, CrewProfileActivity.class);
         Crew crew = crewSearch.get(pos);
         intent.putExtra("crew", crew);
-        intent.putExtra("LoggedInUser", user);
+        intent.putExtra("LoggedInUser", loggedInUser);
         startActivity(intent);
     }
 

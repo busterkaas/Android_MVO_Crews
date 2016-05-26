@@ -25,7 +25,9 @@ import java.util.Scanner;
  */
 public class CrewRepository implements ICRUDRepository<Crew> {
 
-    private final String URL = "http://10.0.2.2:9000/api/crews"; /*"http://mvogamesjs-tasin.rhcloud.com/api/crews";*/
+    //private final String URL = "http://10.0.2.2:9000/api/crews"; /*"http://mvogamesjs-tasin.rhcloud.com/api/crews";*/
+
+    private final String URL = "http://mvogames-hardydrachmann.rhcloud.com/api/crews/";
 
     private final String TAG = "CREW";
 
@@ -48,7 +50,7 @@ public class CrewRepository implements ICRUDRepository<Crew> {
             if (result == null) return;
 
             JSONArray array = new JSONArray(result);
-            Log.d(TAG, "loadAll: " +array);
+            Log.d("TAGGELITAG", "loadAll: " +array);
             for (int i = 0; i < array.length(); i++) {
                 JSONObject d = array.getJSONObject(i);
 
@@ -179,7 +181,12 @@ public class CrewRepository implements ICRUDRepository<Crew> {
     }
 
     @Override
-    public Crew update(Crew crew) throws Exception {
+    public void update(Crew crew) throws Exception {
+
+    }
+
+    @Override
+    public Crew getUpdated() throws Exception {
         return null;
     }
 

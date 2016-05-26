@@ -3,7 +3,6 @@ package com.example.buster.mycrews.UI.User;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -14,7 +13,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.buster.mycrews.BE.User;
-import com.example.buster.mycrews.Controller.UserController;
 import com.example.buster.mycrews.MenuActivity;
 import com.example.buster.mycrews.R;
 
@@ -24,8 +22,7 @@ import java.util.Date;
 
 public class MyProfileActivity extends MenuActivity {
 
-    private UserController userController;
-    private User loggedInUser;
+
 
     private final int CAPTURE_PICTURE_REQUEST_CODE = 100, ACTIVITY_EDIT_PROFILE_REQUEST_CODE = 200;
 
@@ -39,8 +36,15 @@ public class MyProfileActivity extends MenuActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_profile);
 
-        userController = UserController.getInstance();
-        loggedInUser = userController.getCurrentUser();
+
+        Bundle extra = getIntent().getExtras();
+        if(extra!=null) {
+            loggedInUser = (User)extra.get("LoggedInUser");
+
+        }else{
+            System.exit(0);
+        }
+
 
         // Lock the screen orientation to portrait (turn-safe activity)
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
@@ -67,12 +71,38 @@ public class MyProfileActivity extends MenuActivity {
         // create intent
         Intent editUserProfileIntent = new Intent(getApplicationContext(), MyEditProfileActivity.class);
         // put extras in intent (even though we can already access 'logged in user' globally because of the static singleton class), this is just for show.
+        editUserProfileIntent.putExtra("LoggedInUser", loggedInUser);
         editUserProfileIntent.putExtra("userName", tvUserName.getText());
         editUserProfileIntent.putExtra("firstName", tvFirstName.getText());
         editUserProfileIntent.putExtra("lastName", tvLastName.getText());
         editUserProfileIntent.putExtra("phoneNumber", tvPhoneNumber.getText());
         // start the intent
         startActivityForResult(editUserProfileIntent, ACTIVITY_EDIT_PROFILE_REQUEST_CODE);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        // handle the returned result from 'Camera intent'
+        if (requestCode == CAPTURE_PICTURE_REQUEST_CODE && resultCode == RESULT_OK) {
+            String filename = photoFile.toString();
+            displayPicture(filename);
+        }
+        // handle the returned result from 'edit user profile intent'
+        if (requestCode == ACTIVITY_EDIT_PROFILE_REQUEST_CODE && resultCode == RESULT_OK) {
+
+            // update the logged in users info
+            loggedInUser.setUserName("" + data.getStringExtra("userName"));
+            loggedInUser.setFirstName("" + data.getStringExtra("firstName"));
+            loggedInUser.setLastName("" + data.getStringExtra("lastName"));
+            loggedInUser.setPhoneNumber(Integer.parseInt(data.getStringExtra("phoneNumber")));
+
+            // update textviews with data from the newly updated logged in user
+            tvUserName.setText("" + loggedInUser.getUserName());
+            tvFirstName.setText("" + loggedInUser.getFirstName());
+            tvLastName.setText("" + loggedInUser.getLastName());
+            tvPhoneNumber.setText("" + loggedInUser.getPhoneNumber());
+        }
     }
 
     private void populateTextViews() {
@@ -125,23 +155,6 @@ public class MyProfileActivity extends MenuActivity {
         }
         Toast.makeText(getApplicationContext(), "No SDcard mounted", Toast.LENGTH_SHORT).show();
         return null;
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        // handle the returned result from 'Camera intent'
-        if (requestCode == CAPTURE_PICTURE_REQUEST_CODE && resultCode == RESULT_OK) {
-            String filename = photoFile.toString();
-            displayPicture(filename);
-        }
-        // handle the returned result from 'edit user profile intent'
-        if (requestCode == ACTIVITY_EDIT_PROFILE_REQUEST_CODE && resultCode == RESULT_OK) {
-            tvUserName.setText("" + data.getStringExtra("userName"));
-            tvFirstName.setText("" + data.getStringExtra("firstName"));
-            tvLastName.setText("" + data.getStringExtra("lastName"));
-            tvPhoneNumber.setText("" + data.getStringExtra("phoneNumber"));
-        }
     }
 
     private void displayPicture(String filename) {

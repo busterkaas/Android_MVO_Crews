@@ -20,7 +20,7 @@ import com.example.buster.mycrews.UI.User.MyProfileActivity;
  */
 public class MenuActivity extends AppCompatActivity{
 
-    public User user;
+    public User loggedInUser;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -47,21 +47,24 @@ public class MenuActivity extends AppCompatActivity{
         //noinspection SimplifiableIfStatement
         if (id == R.id.myProfile) {
             Intent intent = new Intent(MenuActivity.this, MyProfileActivity.class);
+            intent.putExtra("LoggedInUser", loggedInUser);
             startActivity(intent);
             return true;
         }
         if (id == R.id.myCrews) {
             Intent intent = new Intent(MenuActivity.this, MyCrewsActivity.class);
+            intent.putExtra("LoggedInUser", loggedInUser);
             startActivity(intent);
             return true;
         }
         if (id == R.id.allCrews) {
             Intent intent = new Intent(MenuActivity.this, FindCrewActivity.class);
+            intent.putExtra("LoggedInUser", loggedInUser);
             startActivity(intent);
             return true;
         }
         if (id == R.id.logout) {
-            Intent intent = new Intent(MenuActivity.this,MainActivity.class);
+            Intent intent = new Intent(MenuActivity.this, MainActivity.class);
             startActivity(intent);
             return true;
         }
@@ -75,12 +78,12 @@ public class MenuActivity extends AppCompatActivity{
         if(crew!=null){
             intent.putExtra("crew", crew);
         }
-        intent.putExtra("LoggedInUser", user);
+        intent.putExtra("LoggedInUser", loggedInUser);
         startActivity(intent);
     }
 
     public void setUser(User user){
-        this.user = user;
+        this.loggedInUser = user;
     }
 
 
@@ -100,6 +103,6 @@ public class MenuActivity extends AppCompatActivity{
     @Override
     protected void onPause() {
         super.onPause();
-        user = null;
+        loggedInUser = null;
     }
 }
