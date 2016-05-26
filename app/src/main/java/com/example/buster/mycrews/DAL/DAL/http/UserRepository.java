@@ -111,26 +111,14 @@ public class UserRepository implements ICRUDRepository<User> {
     }
 
     @Override
-    public void update(User user) throws Exception {
-        Log.d("USERR", "FOUR");
-        JSONObject userToUpdate = new JSONObject();
-        try {
-            userToUpdate.put("name", user.getUserName());
-            userToUpdate.put("firstName", user.getFirstName());
-            userToUpdate.put("lastName", user.getLastName());
-            userToUpdate.put("phoneNumber", user.getPhoneNumber());
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        // call to async class in DAL-layer
+    public void update(JSONObject jsonUser, String userId) throws Exception {
 
         String JsonResponse = null;
-        String JsonDATA = String.valueOf(userToUpdate);
-        Log.d("USERR", "JSONDATA CREATED");
+        String JsonDATA = String.valueOf(jsonUser);
         HttpURLConnection urlConnection = null;
         BufferedReader reader = null;
         try {
-            URL url = new URL("http://mvogames-hardydrachmann.rhcloud.com/api/users/" + user.getId());
+            URL url = new URL(URL + userId);
             urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setDoOutput(true);
             // is output buffer writer
@@ -156,21 +144,18 @@ public class UserRepository implements ICRUDRepository<User> {
                 buffer.append(inputLine + "\n");
             if (buffer.length() == 0) {
                 // stream empty - nothing to parse
-
+                Log.d(TAG, "buffer is empty");
             }
             JsonResponse = buffer.toString();
 
-            JSONObject jsonUser = new JSONObject(buffer.toString());
+            JSONObject newJsonUser = new JSONObject(JsonResponse);
             User newUser = null;
             try {
-                newUser = new User(jsonUser.getString("_id"), jsonUser.getString("name"), jsonUser.getString("firstName"), jsonUser.getString("lastName"), jsonUser.getInt("phoneNumber"));
+                newUser = new User(newJsonUser.getString("_id"), newJsonUser.getString("name"), newJsonUser.getString("firstName"), newJsonUser.getString("lastName"), newJsonUser.getInt("phoneNumber"));
 
             } catch (JSONException e) {
                 Log.d(TAG, e.getMessage());
             }
-            // response data
-            Log.d("RESPONSE DATA",JsonResponse);
-            // send to post execute
            m_user = newUser;
         } catch (IOException e) {
             e.printStackTrace();

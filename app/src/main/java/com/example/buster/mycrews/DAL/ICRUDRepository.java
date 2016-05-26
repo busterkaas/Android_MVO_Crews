@@ -1,5 +1,7 @@
 package com.example.buster.mycrews.DAL;
 
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 /**
@@ -35,7 +37,7 @@ public interface ICRUDRepository<T> {
      * Update object in database by intputobject
      * @throws Exception
      */
-    public void update(T t) throws Exception;
+    public void update(JSONObject t, String id) throws Exception;
 
     /**
      * Read updated user

@@ -92,6 +92,7 @@ public class MyProfileActivity extends MenuActivity {
         if (requestCode == ACTIVITY_EDIT_PROFILE_REQUEST_CODE && resultCode == RESULT_OK) {
 
             // update the logged in users info
+            loggedInUser = (User) data.getExtras().get("user");
             loggedInUser.setUserName("" + data.getStringExtra("userName"));
             loggedInUser.setFirstName("" + data.getStringExtra("firstName"));
             loggedInUser.setLastName("" + data.getStringExtra("lastName"));

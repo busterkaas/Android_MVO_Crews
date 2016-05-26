@@ -98,10 +98,11 @@ public class MenuActivity extends AppCompatActivity{
             e.printStackTrace();
         }
     }
-
+/*
     @Override
     protected void onPause() {
         super.onPause();
         loggedInUser = null;
     }
+    */
 }

@@ -181,7 +181,7 @@ public class CrewRepository implements ICRUDRepository<Crew> {
     }
 
     @Override
-    public void update(Crew crew) throws Exception {
+    public void update(JSONObject jsonCrew, String crewId) throws Exception {
 
     }
 

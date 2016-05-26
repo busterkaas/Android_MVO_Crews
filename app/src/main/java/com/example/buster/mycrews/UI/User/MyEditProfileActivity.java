@@ -89,16 +89,17 @@ public class MyEditProfileActivity extends MenuActivity {
         loggedInUser = user;
         // update 'MyProfileActivity.class' by creating an intent and putting in the new data
         Intent sendDataBackIntent = new Intent(getApplicationContext(), MyProfileActivity.class);
-        sendDataBackIntent.putExtra("userName", user.getUserName());
-        sendDataBackIntent.putExtra("firstName", user.getFirstName());
-        sendDataBackIntent.putExtra("lastName", user.getLastName());
-        sendDataBackIntent.putExtra("phoneNumber", String.valueOf(user.getPhoneNumber()));
+        sendDataBackIntent.putExtra("user", loggedInUser);
+        sendDataBackIntent.putExtra("userName", loggedInUser.getUserName());
+        sendDataBackIntent.putExtra("firstName", loggedInUser.getFirstName());
+        sendDataBackIntent.putExtra("lastName", loggedInUser.getLastName());
+        sendDataBackIntent.putExtra("phoneNumber", String.valueOf(loggedInUser.getPhoneNumber()));
 
         // populate result and return it to 'MyProfileActivity.class
-/*
+
        setResult(RESULT_OK, sendDataBackIntent);
 
         finish();
-        */
+
     }
 }

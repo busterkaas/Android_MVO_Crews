@@ -4,6 +4,8 @@ import com.example.buster.mycrews.BE.Crew;
 import com.example.buster.mycrews.DAL.DALFacade;
 import com.example.buster.mycrews.DAL.ICRUDRepository;
 
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 /**
@@ -47,6 +49,11 @@ public class CrewManager implements IManager<Crew> {
 
     @Override
     public Crew getUpdated() throws Exception {
+        return null;
+    }
+
+    @Override
+    public JSONObject converToJSON(Crew crew) throws Exception {
         return null;
     }
 

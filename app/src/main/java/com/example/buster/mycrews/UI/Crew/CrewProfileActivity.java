@@ -113,7 +113,7 @@ public class CrewProfileActivity extends MenuActivity {
     private void goToActivity(Class activity) {
         Intent intent = new Intent(this, activity);
         intent.putExtra("crew", crew);
-        intent.putExtra("UserLoggedIn", loggedInUser);
+        intent.putExtra("LoggedInUser", loggedInUser);
         startActivity(intent);
     }
 
