@@ -55,7 +55,6 @@ public class CrewProfileActivity extends MenuActivity {
         } else {
             System.exit(0);
         }
-
         setupButtons();
         setupText();
     }
