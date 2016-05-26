@@ -24,15 +24,14 @@ import java.util.Scanner;
  */
 public class CrewRepository implements ICRUDRepository<Crew> {
 
-    private final String URL = "http://mvogames-hardydrachmann.rhcloud.com/api/crews/";
+    //private final String URL = "http://10.0.2.2:9000/api/crews";
 
+    private final String URL = "http://mvogames-hardydrachmann.rhcloud.com/api/crews/";
     private final String TAG = "CREW";
 
     ArrayList<Crew> m_crews;
 
-
     public CrewRepository() {
-
     }
 
     public void loadAll(String id) {
@@ -54,7 +53,6 @@ public class CrewRepository implements ICRUDRepository<Crew> {
                 String crewId = d.getString("_id");
                 String crewName = d.getString("name");
                 String crewImgUrl = d.getString("crewImgUrl");
-
 
                 JSONObject JSONleader = d.getJSONObject("leader");
 
@@ -84,7 +82,6 @@ public class CrewRepository implements ICRUDRepository<Crew> {
                     String gsId = JSONGames.getJSONObject(v).getString("_id");
                     String dateString = JSONGames.getJSONObject(v).getString("expiration");
 
-
                     JSONObject jsonGame = JSONGames.getJSONObject(v).getJSONObject("game");
                     String gameTitle = jsonGame.getString("title");
                     String gameInfo = jsonGame.getString("info");
@@ -98,18 +95,33 @@ public class CrewRepository implements ICRUDRepository<Crew> {
 
                     Platform platform = new Platform(pfName, price);
 
-
                     CrewGameSuggestion cgs = new CrewGameSuggestion(gsId, 0, dateString, game, platform);
 
                     games.add(cgs);
-
                 }
+
+                /*
+                JSONArray JSONMessages = d.getJSONArray("crewMessages");
+                ArrayList<CrewMessage> messages = new ArrayList<>();
+                for (int v = 0; v < JSONUsers.length(); v++) {
+
+                    JSONObject jsonUser = JSONMessages.getJSONObject(v).getJSONObject("user");
+                    String msgUserId = jsonUser.getString("_id");
+                    String msgUsername = jsonUser.getString("name");
+
+                    User msgUser = new User(msgUserId, msgUsername);
+
+                    String msgMessage = JSONMessages.getJSONObject(v).getString("message");
+
+                    CrewMessage crewMessage = new CrewMessage(msgUser, msgMessage);
+                    messages.add(crewMessage);
+
+                }*/
 
                 Crew crew = new Crew(crewId, crewName, crewImgUrl, leader, applicants, users, games);
 
                 m_crews.add(crew);
             }
-
         } catch (JSONException e) {
             Log.e(TAG,
                     "There was an error parsing the JSON", e);
@@ -161,73 +173,15 @@ public class CrewRepository implements ICRUDRepository<Crew> {
     }
 
     @Override
-    public Crew update(Crew crew) throws Exception {
+    public void update(JSONObject jsonCrew, String crewId) throws Exception {
+    }
+
+    @Override
+    public Crew getUpdated() throws Exception {
         return null;
     }
 
     @Override
     public void delete(int id) throws Exception {
-
     }
-/*
-
-    public ArrayList<Crew> readAllUserCrews() throws Exception {
-        return m_usercrews;
-    }
-
-
-    public void loadAllUserCrews(String Id) throws Exception {
-        m_usercrews = new ArrayList<>();
-        try {
-            String result = getContent(URL + "/user/" + Id);
-
-            if (result == null) return;
-
-            JSONArray array = new JSONArray(result);
-
-            for (int i = 0; i < array.length(); i++) {
-                JSONObject d = array.getJSONObject(i);
-
-                String crewId = d.getString("_id");
-                String crewName = d.getString("name");
-                String crewImgUrl = d.getString("crewImgUrl");
-
-
-                JSONObject JSONleader = d.getJSONObject("leader");
-
-                User leader = new User(JSONleader.getString("_id"), JSONleader.getString("name"));
-
-                JSONArray JSONApplicants = d.getJSONArray("applicants");
-                ArrayList<User> applicants = new ArrayList<>();
-                for (int v = 0; v < JSONApplicants.length(); v++) {
-                    String userName = JSONApplicants.getJSONObject(v).getString("name");
-                    String userId = JSONApplicants.getJSONObject(v).getString("_id");
-                    User u = new User(userId, userName);
-                    applicants.add(u);
-                }
-
-                JSONArray JSONUsers = d.getJSONArray("users");
-                ArrayList<User> users = new ArrayList<>();
-                for (int v = 0; v < JSONUsers.length(); v++) {
-                    String userName = JSONUsers.getJSONObject(v).getString("name");
-                    String userId = JSONUsers.getJSONObject(v).getString("_id");
-                    User u = new User(userId, userName);
-                    users.add(u);
-                }
-
-                Crew crew = new Crew(crewId, crewName, crewImgUrl, leader, applicants, users);
-
-
-                m_usercrews.add(crew);
-            }
-            Log.d("CREWSIZE", "Size: IN LOAD "+ m_usercrews.size());
-
-        } catch (JSONException e) {
-            Log.e(TAG,
-                    "There was an error parsing the JSON", e);
-        } catch (Exception e) {
-            Log.d(TAG, "General exception in loadAllUserCrews " + e.getMessage());
-        }
-    }
-    */
 }

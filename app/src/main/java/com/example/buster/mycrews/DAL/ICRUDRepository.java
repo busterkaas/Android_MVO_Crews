@@ -1,5 +1,7 @@
 package com.example.buster.mycrews.DAL;
 
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 /**
@@ -12,6 +14,12 @@ public interface ICRUDRepository<T> {
      * @throws Exception
      */
     public T create(T t) throws Exception;
+
+    /**
+     * load all objects
+     * @throws Exception
+     */
+    public void loadAll(String id) throws Exception;
 
     /**
      * Reads objects in database and returns them in a list
@@ -29,7 +37,13 @@ public interface ICRUDRepository<T> {
      * Update object in database by intputobject
      * @throws Exception
      */
-    public T update(T t) throws Exception;
+    public void update(JSONObject t, String id) throws Exception;
+
+    /**
+     * Read updated user
+     * @return
+     */
+    public T getUpdated() throws Exception;
 
     /**
      * deletes object in database by id
@@ -37,11 +51,6 @@ public interface ICRUDRepository<T> {
      */
     public void delete(int id) throws Exception;
 
-    /**
-     * load all objects
-     * @throws Exception
-     */
-    public void loadAll(String id) throws Exception;
 
 
 }

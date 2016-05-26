@@ -26,21 +26,32 @@
         android:id="@+id/gameTitle"
         android:text="Game Title"
         android:textColor="#e8cfcfcf"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="15dp"
         android:layout_marginLeft="115dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
 
     <TextView
-        android:id="@+id/gameGenre"
-        android:text="Game Genre"
+        android:id="@+id/gamePlatform"
+        android:text="Game Platform"
         android:textColor="#e8cfcfcf"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="15dp"
         android:layout_below="@+id/gameTitle"
         android:layout_marginLeft="115dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/gameExpireDate"
+        android:text="Game Expiration"
+        android:textColor="#e8cfcfcf"
+        android:layout_marginTop="15dp"
+        android:layout_below="@+id/gamePlatform"
+        android:layout_marginLeft="115dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
     <Button
 
         android:id="@+id/btnJoin"

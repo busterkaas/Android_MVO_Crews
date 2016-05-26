@@ -1,5 +1,7 @@
 package com.example.buster.mycrews.BLL.Manager;
 
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 /**
@@ -13,12 +15,15 @@ public interface IManager<T> {
 
     T create(T t) throws Exception;
 
-    T update(T t) throws Exception;
+    void update(T t) throws Exception;
 
-    T update(T t, String id) throws Exception;
+    T getUpdated() throws Exception;
+
+    JSONObject converToJSON(T t) throws Exception;
 
     boolean delete(T t) throws Exception;
 
     boolean delete(String id) throws Exception;
+
 
 }

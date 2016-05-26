@@ -8,8 +8,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 
+import com.example.buster.mycrews.BE.Crew;
+import com.example.buster.mycrews.BE.User;
 import com.example.buster.mycrews.BLL.Manager.ImageDownloader;
-import com.example.buster.mycrews.Controller.UserController;
 import com.example.buster.mycrews.UI.Crew.FindCrewActivity;
 import com.example.buster.mycrews.UI.User.MyCrewsActivity;
 import com.example.buster.mycrews.UI.User.MyProfileActivity;
@@ -17,7 +18,10 @@ import com.example.buster.mycrews.UI.User.MyProfileActivity;
 /**
  * Created by RlxCw on 17-05-2016.
  */
-public class MenuActivity extends AppCompatActivity {
+public class MenuActivity extends AppCompatActivity{
+
+    public User loggedInUser;
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         setImageActionBar();
@@ -43,27 +47,43 @@ public class MenuActivity extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.myProfile) {
             Intent intent = new Intent(MenuActivity.this, MyProfileActivity.class);
+            intent.putExtra("LoggedInUser", loggedInUser);
             startActivity(intent);
             return true;
         }
         if (id == R.id.myCrews) {
             Intent intent = new Intent(MenuActivity.this, MyCrewsActivity.class);
+            intent.putExtra("LoggedInUser", loggedInUser);
             startActivity(intent);
             return true;
         }
         if (id == R.id.allCrews) {
             Intent intent = new Intent(MenuActivity.this, FindCrewActivity.class);
+            intent.putExtra("LoggedInUser", loggedInUser);
             startActivity(intent);
             return true;
         }
         if (id == R.id.logout) {
             Intent intent = new Intent(MenuActivity.this, MainActivity.class);
             startActivity(intent);
-            UserController.getInstance().userLogout();
             return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void goToActivity(Class goToActivity, Crew crew){
+
+        Intent intent = new Intent(getApplicationContext(), goToActivity);
+        if(crew!=null){
+            intent.putExtra("crew", crew);
+        }
+        intent.putExtra("LoggedInUser", loggedInUser);
+        startActivity(intent);
+    }
+
+    public void setUser(User user){
+        this.loggedInUser = user;
     }
 
 
@@ -78,4 +98,11 @@ public class MenuActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+/*
+    @Override
+    protected void onPause() {
+        super.onPause();
+        loggedInUser = null;
+    }
+    */
 }

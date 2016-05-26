@@ -32,4 +32,14 @@ public class CrewLogic {
         }
         return false;
     }
+
+    public boolean hasApplied(Crew crew, String id) {
+
+        for (User u : crew.getCrewApplicants()) {
+            if (id.equals(u.getId())) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

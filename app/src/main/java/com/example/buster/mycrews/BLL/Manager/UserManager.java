@@ -1,8 +1,13 @@
 package com.example.buster.mycrews.BLL.Manager;
 
+import android.util.Log;
+
 import com.example.buster.mycrews.BE.User;
 import com.example.buster.mycrews.DAL.DAL.http.UserRepository;
 import com.example.buster.mycrews.DAL.DALFacade;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -41,13 +46,26 @@ public class UserManager implements IManager<User> {
     }
 
     @Override
-    public User update(User user) throws Exception {
-        return null;
+    public void update(User user) throws Exception {
+        JSONObject jsonUser = converToJSON(user);
+        facade.getUserRepository().update(jsonUser, user.getId());
     }
 
     @Override
-    public User update(User user, String id) throws Exception {
-        return null;
+    public User getUpdated() throws Exception {
+        return facade.getUserRepository().getUpdated();
+    }
+
+    @Override
+    public JSONObject converToJSON(User user) throws Exception {
+        JSONObject userToUpdate = new JSONObject();
+
+            userToUpdate.put("name", user.getUserName());
+            userToUpdate.put("firstName", user.getFirstName());
+            userToUpdate.put("lastName", user.getLastName());
+            userToUpdate.put("phoneNumber", user.getPhoneNumber());
+
+            return userToUpdate;
     }
 
     @Override
@@ -59,4 +77,9 @@ public class UserManager implements IManager<User> {
     public boolean delete(String id) throws Exception {
         return false;
     }
+
+
+
+
+
 }

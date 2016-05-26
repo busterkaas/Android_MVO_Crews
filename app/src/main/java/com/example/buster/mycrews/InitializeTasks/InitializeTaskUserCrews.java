@@ -33,7 +33,7 @@ public class InitializeTaskUserCrews extends AsyncTask<
         // params comes from the execute()
         try {
             ms[0].loadAll(userId);
-            return ms[0].readAll();
+            return ms[0].getAll();
         }catch (Exception e){
             return null;
         }

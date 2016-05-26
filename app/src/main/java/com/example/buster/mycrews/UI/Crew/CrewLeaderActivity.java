@@ -44,10 +44,10 @@ public class CrewLeaderActivity extends MenuActivity {
 
         users = new ArrayList<>();
 
-
         Bundle extra = getIntent().getExtras();
         if (extra != null) {
             crew = (Crew) extra.get("crew");
+            loggedInUser = (User)extra.get("LoggedInUser");
 
         } else {
             Log.d(LOGTAG, "crew was null");
@@ -55,7 +55,6 @@ public class CrewLeaderActivity extends MenuActivity {
 
         setupButtons();
         setupList();
-
     }
 
     private void setupButtons() {
