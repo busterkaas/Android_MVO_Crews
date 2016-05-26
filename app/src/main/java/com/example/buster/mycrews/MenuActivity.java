@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 
 import com.example.buster.mycrews.BLL.Manager.ImageDownloader;
+import com.example.buster.mycrews.Controller.UserController;
 import com.example.buster.mycrews.UI.Crew.FindCrewActivity;
 import com.example.buster.mycrews.UI.User.MyCrewsActivity;
 import com.example.buster.mycrews.UI.User.MyProfileActivity;
@@ -16,7 +17,7 @@ import com.example.buster.mycrews.UI.User.MyProfileActivity;
 /**
  * Created by RlxCw on 17-05-2016.
  */
-public class MenuActivity extends AppCompatActivity{
+public class MenuActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         setImageActionBar();
@@ -56,8 +57,9 @@ public class MenuActivity extends AppCompatActivity{
             return true;
         }
         if (id == R.id.logout) {
-            Intent intent = new Intent(MenuActivity.this,MainActivity.class);
+            Intent intent = new Intent(MenuActivity.this, MainActivity.class);
             startActivity(intent);
+            UserController.getInstance().userLogout();
             return true;
         }
 
@@ -76,5 +78,4 @@ public class MenuActivity extends AppCompatActivity{
             e.printStackTrace();
         }
     }
-
 }

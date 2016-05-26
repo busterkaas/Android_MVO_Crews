@@ -72,7 +72,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     void login() {
-
         User user = null;
         boolean validUser = false;
         String myUsername = etUsername.getText().toString();
@@ -81,7 +80,6 @@ public class MainActivity extends AppCompatActivity {
             if (u.getUserName().equals(myUsername)) {
                 user = u;
                 validUser = true;
-
             }
         }
 
@@ -98,6 +96,4 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Invalid username or password", Toast.LENGTH_LONG).show();
         }
     }
-
-
 }
