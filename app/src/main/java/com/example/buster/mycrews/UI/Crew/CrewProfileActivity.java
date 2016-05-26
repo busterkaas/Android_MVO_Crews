@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 import com.example.buster.mycrews.BE.Crew;
 import com.example.buster.mycrews.BE.User;
-import com.example.buster.mycrews.BLL.Manager.GenerelLogic.CrewLogic;
+import com.example.buster.mycrews.BLL.GenerelLogic.CrewLogic;
 import com.example.buster.mycrews.MenuActivity;
 import com.example.buster.mycrews.R;
 

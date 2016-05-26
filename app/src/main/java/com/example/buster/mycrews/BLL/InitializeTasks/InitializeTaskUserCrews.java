@@ -1,11 +1,9 @@
-package com.example.buster.mycrews.InitializeTasks;
+package com.example.buster.mycrews.BLL.InitializeTasks;
 
 import android.os.AsyncTask;
-import android.util.Log;
 
 import com.example.buster.mycrews.BE.Crew;
 import com.example.buster.mycrews.BLL.Manager.CrewManager;
-import com.example.buster.mycrews.UI.Crew.FindCrewActivity;
 import com.example.buster.mycrews.UI.User.MyCrewsActivity;
 
 import java.util.ArrayList;

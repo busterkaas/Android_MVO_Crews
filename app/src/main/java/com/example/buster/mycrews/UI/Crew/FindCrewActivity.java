@@ -1,9 +1,7 @@
 package com.example.buster.mycrews.UI.Crew;
 
-import android.app.Application;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
@@ -13,7 +11,7 @@ import android.widget.ListView;
 import com.example.buster.mycrews.BE.Crew;
 import com.example.buster.mycrews.BE.User;
 import com.example.buster.mycrews.BLL.Manager.CrewManager;
-import com.example.buster.mycrews.InitializeTasks.InitializeTaskCrews;
+import com.example.buster.mycrews.BLL.InitializeTasks.InitializeTaskCrews;
 import com.example.buster.mycrews.MenuActivity;
 import com.example.buster.mycrews.R;
 import com.example.buster.mycrews.UI.ListViewAdapters.FindCrewListViewAdapter;

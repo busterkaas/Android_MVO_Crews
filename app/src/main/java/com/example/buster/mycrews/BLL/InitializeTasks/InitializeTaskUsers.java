@@ -1,11 +1,10 @@
-package com.example.buster.mycrews.InitializeTasks;
+package com.example.buster.mycrews.BLL.InitializeTasks;
 
 import android.os.AsyncTask;
 import android.util.Log;
 
 import com.example.buster.mycrews.BE.User;
 import com.example.buster.mycrews.BLL.Manager.UserManager;
-import com.example.buster.mycrews.DAL.DAL.http.UserRepository;
 import com.example.buster.mycrews.MainActivity;
 
 import java.util.ArrayList;

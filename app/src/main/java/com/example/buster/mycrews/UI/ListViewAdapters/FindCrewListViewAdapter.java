@@ -10,8 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.buster.mycrews.BE.Crew;
-import com.example.buster.mycrews.BLL.Manager.ImageDownloader;
-import com.example.buster.mycrews.MenuActivity;
+import com.example.buster.mycrews.BLL.InitializeTasks.ImageDownloader;
 import com.example.buster.mycrews.R;
 
 import java.util.ArrayList;
