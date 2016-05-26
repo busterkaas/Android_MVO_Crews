@@ -34,17 +34,11 @@ public class CrewGameSuggestionGameListViewAdapter extends BaseAdapter {
 
     private Context mContext;
     private ArrayList<CrewGameSuggestion> gameSuggestions;
-    Crew crew;
-    User me;
-    UserController userController;
-    CrewLogic crewLogic;
+    CrewLogic cl;
     private static LayoutInflater inflater = null;
 
     public CrewGameSuggestionGameListViewAdapter(Context context, ArrayList<CrewGameSuggestion> data){
-
         mContext = context;
-        me = userController.getCurrentUser();
-        crewLogic = new CrewLogic();
         gameSuggestions = data;
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
@@ -88,12 +82,7 @@ public class CrewGameSuggestionGameListViewAdapter extends BaseAdapter {
         btnJoin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                if(crewLogic.hasApplied(crew, me.getId())){
                     Toast.makeText(mContext, "You have joined the game", Toast.LENGTH_SHORT).show();
-                }else{
-                    Toast.makeText(mContext, "You have already Applied", Toast.LENGTH_SHORT).show();
-                }
             }
         });
         return view;
