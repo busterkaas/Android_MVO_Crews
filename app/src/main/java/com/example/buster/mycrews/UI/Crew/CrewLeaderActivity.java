@@ -48,6 +48,7 @@ public class CrewLeaderActivity extends MenuActivity {
         Bundle extra = getIntent().getExtras();
         if (extra != null) {
             crew = (Crew) extra.get("crew");
+            loggedInUser = (User)extra.get("LoggedInUser");
 
         } else {
             Log.d(LOGTAG, "crew was null");

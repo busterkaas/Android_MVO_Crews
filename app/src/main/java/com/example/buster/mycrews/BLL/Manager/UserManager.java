@@ -1,5 +1,7 @@
 package com.example.buster.mycrews.BLL.Manager;
 
+import android.util.Log;
+
 import com.example.buster.mycrews.BE.User;
 import com.example.buster.mycrews.DAL.DAL.http.UserRepository;
 import com.example.buster.mycrews.DAL.DALFacade;
@@ -41,13 +43,14 @@ public class UserManager implements IManager<User> {
     }
 
     @Override
-    public User update(User user) throws Exception {
-        return null;
+    public void update(User user) throws Exception {
+        Log.d("USERR", "THEEE");
+        facade.getUserRepository().update(user);
     }
 
     @Override
-    public User update(User user, String id) throws Exception {
-        return null;
+    public User getUpdated() throws Exception {
+        return facade.getUserRepository().getUpdated();
     }
 
     @Override

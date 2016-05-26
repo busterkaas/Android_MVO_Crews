@@ -13,7 +13,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.buster.mycrews.BE.User;
-import com.example.buster.mycrews.Controller.UserController;
 import com.example.buster.mycrews.MenuActivity;
 import com.example.buster.mycrews.R;
 
@@ -23,8 +22,7 @@ import java.util.Date;
 
 public class MyProfileActivity extends MenuActivity {
 
-    private UserController userController;
-    private User loggedInUser;
+
 
     private final int CAPTURE_PICTURE_REQUEST_CODE = 100, ACTIVITY_EDIT_PROFILE_REQUEST_CODE = 200;
 
@@ -38,8 +36,15 @@ public class MyProfileActivity extends MenuActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_profile);
 
-        userController = UserController.getInstance();
-        loggedInUser = userController.getCurrentUser();
+
+        Bundle extra = getIntent().getExtras();
+        if(extra!=null) {
+            loggedInUser = (User)extra.get("LoggedInUser");
+
+        }else{
+            System.exit(0);
+        }
+
 
         // Lock the screen orientation to portrait (turn-safe activity)
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
@@ -66,6 +71,7 @@ public class MyProfileActivity extends MenuActivity {
         // create intent
         Intent editUserProfileIntent = new Intent(getApplicationContext(), MyEditProfileActivity.class);
         // put extras in intent (even though we can already access 'logged in user' globally because of the static singleton class), this is just for show.
+        editUserProfileIntent.putExtra("LoggedInUser", loggedInUser);
         editUserProfileIntent.putExtra("userName", tvUserName.getText());
         editUserProfileIntent.putExtra("firstName", tvFirstName.getText());
         editUserProfileIntent.putExtra("lastName", tvLastName.getText());

@@ -16,6 +16,15 @@ public class Crew implements Serializable {
     private ArrayList<User> crewMembers;
     private ArrayList<CrewGameConfirmation> crewGameConfirmations;
     private ArrayList<CrewGameSuggestion> crewGameSuggestions;
+    private ArrayList<CrewMessage> crewMessages;
+
+    public ArrayList<CrewMessage> getCrewMessages() {
+        return crewMessages;
+    }
+
+    public void setCrewMessages(ArrayList<CrewMessage> crewMessages) {
+        this.crewMessages = crewMessages;
+    }
 
     public ArrayList<CrewGameSuggestion> getCrewGameSuggestions() {
         return crewGameSuggestions;

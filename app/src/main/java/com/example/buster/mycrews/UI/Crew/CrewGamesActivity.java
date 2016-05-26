@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import com.example.buster.mycrews.BE.Crew;
 import com.example.buster.mycrews.BE.CrewGameSuggestion;
+import com.example.buster.mycrews.BE.User;
 import com.example.buster.mycrews.MenuActivity;
 import com.example.buster.mycrews.R;
 import com.example.buster.mycrews.UI.ListViewAdapters.CrewGameSuggestionGameListViewAdapter;
@@ -32,9 +33,11 @@ public class CrewGamesActivity extends MenuActivity {
         setContentView(R.layout.activity_crew_games);
 
         listView = (ListView) findViewById(R.id.crewGameList);
+
         Bundle extra = getIntent().getExtras();
         if (extra != null) {
             crew = (Crew) extra.get("crew");
+            loggedInUser = (User)extra.get("LoggedInUser");
 
         } else {
             Log.d(LOGTAG, "crew was null");

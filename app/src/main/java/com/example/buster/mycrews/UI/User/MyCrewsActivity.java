@@ -8,8 +8,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.buster.mycrews.BE.Crew;
+import com.example.buster.mycrews.BE.User;
 import com.example.buster.mycrews.BLL.Manager.CrewManager;
-import com.example.buster.mycrews.Controller.UserController;
 import com.example.buster.mycrews.InitializeTasks.InitializeTaskUserCrews;
 import com.example.buster.mycrews.MenuActivity;
 import com.example.buster.mycrews.R;
@@ -34,14 +34,18 @@ public class MyCrewsActivity extends MenuActivity {
     ImageView crewImage3;
 
     CrewManager crewManager;
-    UserController userController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_crews);
 
-        userController = UserController.getInstance();
+        Bundle extra = getIntent().getExtras();
+        if (extra != null) {
+            loggedInUser = (User)extra.get("LoggedInUser");
+        } else {
+            System.exit(0);
+        }
 
         crewManager = CrewManager.getInstance();
         loadMyCrews();
@@ -89,7 +93,7 @@ public class MyCrewsActivity extends MenuActivity {
     }
 
     void loadMyCrews(){
-        InitializeTaskUserCrews task = new InitializeTaskUserCrews(this, userController.getCurrentUser().getId());
+        InitializeTaskUserCrews task = new InitializeTaskUserCrews(this, loggedInUser.getId());
         task.execute(crewManager);
     }
 
@@ -97,6 +101,7 @@ public class MyCrewsActivity extends MenuActivity {
         Intent intent;
         if(crews.size()>= crew+1) {
             intent = new Intent(MyCrewsActivity.this, CrewProfileActivity.class);
+            intent.putExtra("LoggedInUser", loggedInUser);
             intent.putExtra("crew", crews.get(crew));
             startActivity(intent);
         }else{

@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,15 +11,14 @@ import android.widget.Toast;
 
 import com.example.buster.mycrews.BE.User;
 import com.example.buster.mycrews.BLL.Manager.UserManager;
-import com.example.buster.mycrews.Controller.UserController;
 import com.example.buster.mycrews.InitializeTasks.InitializeTaskUsers;
-import com.example.buster.mycrews.UI.Crew.FindCrewActivity;
+import com.example.buster.mycrews.UI.User.MyProfileActivity;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    private UserController userController;
+    User userLogin = null;
     private ArrayList<User> users;
     UserManager userManager;
 
@@ -62,6 +60,20 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getUsers();
+        userLogin = null;
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        getUsers();
+        userLogin = null;
+    }
+
     public void getUsers() {
         InitializeTaskUsers taskUsers = new InitializeTaskUsers(this);
         taskUsers.execute(userManager);
@@ -72,26 +84,36 @@ public class MainActivity extends AppCompatActivity {
     }
 
     void login() {
-        User user = null;
+
         boolean validUser = false;
         String myUsername = etUsername.getText().toString();
 
         for (User u : users) {
             if (u.getUserName().equals(myUsername)) {
-                user = u;
+                userLogin = u;
                 validUser = true;
             }
         }
 
         //simulate login
         if (validUser) {
+
+            Intent intent = new Intent(MainActivity.this, MyProfileActivity.class);
+            intent.putExtra("LoggedInUser", userLogin);
+
+            startActivity(intent);
+
+
+            /*
             userController = UserController.getInstance();
             userController.userLogin(user);
+
 
             Log.d("MOJN", "My id: " + user.getId());
 
             Intent intent = new Intent(MainActivity.this, FindCrewActivity.class);
             startActivity(intent);
+            */
         } else {
             Toast.makeText(getApplicationContext(), "Invalid username or password", Toast.LENGTH_LONG).show();
         }
