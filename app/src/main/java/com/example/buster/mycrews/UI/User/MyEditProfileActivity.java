@@ -32,14 +32,11 @@ public class MyEditProfileActivity extends MenuActivity {
         userManager = UserManager.getInstance();
 
         Bundle extra = getIntent().getExtras();
-        if(extra!=null) {
-            loggedInUser = (User)extra.get("LoggedInUser");
-        }else{
+        if (extra != null) {
+            loggedInUser = (User) extra.get("LoggedInUser");
+        } else {
             System.exit(0);
         }
-
-        // Lock the screen orientation to portrait (turn-safe activity)
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         initComponents();
         populateEditTexts();
@@ -65,10 +62,7 @@ public class MyEditProfileActivity extends MenuActivity {
         Log.d("USERR", "ONE");
         InitializeTaskUserUpdate task = new InitializeTaskUserUpdate(this, userToUpdate);
         task.execute(userManager);
-
     }
-
-
 
     private void populateEditTexts() {
         etUserName.setText(getIntent().getStringExtra("userName"));
@@ -96,10 +90,8 @@ public class MyEditProfileActivity extends MenuActivity {
         sendDataBackIntent.putExtra("phoneNumber", String.valueOf(loggedInUser.getPhoneNumber()));
 
         // populate result and return it to 'MyProfileActivity.class
-
-       setResult(RESULT_OK, sendDataBackIntent);
+        setResult(RESULT_OK, sendDataBackIntent);
 
         finish();
-
     }
 }
