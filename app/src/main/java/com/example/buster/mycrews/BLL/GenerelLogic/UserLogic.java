@@ -5,8 +5,8 @@ package com.example.buster.mycrews.BLL.GenerelLogic;
  */
 public class UserLogic {
 
-    public boolean validateUserInput(String username, String password){
-        if(username.trim().isEmpty()||password.trim().isEmpty()){
+    public boolean validateUserInput(String username, String password) {
+        if (username.equals("") || password.trim().equals("")) {
             return false;
         }
         return true;
