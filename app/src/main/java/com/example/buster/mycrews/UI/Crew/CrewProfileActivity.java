@@ -30,12 +30,11 @@ public class CrewProfileActivity extends MenuActivity {
     ImageView crewImage;
     CrewLogic crewLogic;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_crew_profile);
-       crewLogic = new CrewLogic();
+        crewLogic = new CrewLogic();
 
         crewImage = (ImageView) findViewById(R.id.myCrewImage);
         crewName = (TextView) findViewById(R.id.myCrewName);
@@ -49,26 +48,24 @@ public class CrewProfileActivity extends MenuActivity {
 
 
         Bundle extra = getIntent().getExtras();
-        if(extra!=null) {
-            crew = (Crew)extra.get("crew");
-            loggedInUser = (User)extra.get("LoggedInUser");
+        if (extra != null) {
+            crew = (Crew) extra.get("crew");
+            loggedInUser = (User) extra.get("LoggedInUser");
             setupCrewInfo();
-        }else{
+        } else {
             System.exit(0);
         }
-
         setupButtons();
         setupText();
-
     }
 
     private void setupText() {
         crewLeader.setText(crew.getCrewLeader().getUserName());
         int membersCount = crew.getCrewMembers().size();
-        crewMembers.setText(membersCount+"/10");
+        crewMembers.setText(membersCount + "/10");
     }
 
-    void setupButtons(){
+    void setupButtons() {
 
         btnApply.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,16 +93,16 @@ public class CrewProfileActivity extends MenuActivity {
             }
         });
 
-        if(crewLogic.isCrewMember(crew, loggedInUser.getId())){
-                btnApply.setClickable(false);
-                btnChat.setClickable(true);
-                btnGame.setClickable(true);
-        }else {
+        if (crewLogic.isCrewMember(crew, loggedInUser.getId())) {
+            btnApply.setClickable(false);
+            btnChat.setClickable(true);
+            btnGame.setClickable(true);
+        } else {
             btnApply.setClickable(true);
             btnChat.setClickable(false);
             btnGame.setClickable(false);
         }
-        if(!crewLogic.isCrewLeader(crew, loggedInUser.getId())){
+        if (!crewLogic.isCrewLeader(crew, loggedInUser.getId())) {
             btnLeader.setVisibility(btnLeader.GONE);
         }
     }
@@ -121,10 +118,9 @@ public class CrewProfileActivity extends MenuActivity {
         Toast.makeText(this, "Applied for membership", Toast.LENGTH_SHORT).show();
     }
 
-    void setupCrewInfo(){
+    void setupCrewInfo() {
         crewName.setText(crew.getCrewName());
         crewLeader.setText(crew.getCrewLeader().getUserName());
         downloadImage(crewImage,crew.getCrewImgUrl());
     }
-
 }

@@ -44,7 +44,6 @@ public class CrewLeaderActivity extends MenuActivity {
 
         users = new ArrayList<>();
 
-
         Bundle extra = getIntent().getExtras();
         if (extra != null) {
             crew = (Crew) extra.get("crew");
@@ -56,7 +55,6 @@ public class CrewLeaderActivity extends MenuActivity {
 
         setupButtons();
         setupList();
-
     }
 
     private void setupButtons() {

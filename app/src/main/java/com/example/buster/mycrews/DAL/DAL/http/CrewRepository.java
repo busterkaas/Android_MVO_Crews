@@ -4,7 +4,6 @@ import android.util.Log;
 
 import com.example.buster.mycrews.BE.Crew;
 import com.example.buster.mycrews.BE.CrewGameSuggestion;
-import com.example.buster.mycrews.BE.CrewMessage;
 import com.example.buster.mycrews.BE.Game;
 import com.example.buster.mycrews.BE.Platform;
 import com.example.buster.mycrews.BE.User;
@@ -25,32 +24,29 @@ import java.util.Scanner;
  */
 public class CrewRepository implements ICRUDRepository<Crew> {
 
-    //private final String URL = "http://10.0.2.2:9000/api/crews"; /*"http://mvogamesjs-tasin.rhcloud.com/api/crews";*/
+    //private final String URL = "http://10.0.2.2:9000/api/crews";
 
     private final String URL = "http://mvogames-hardydrachmann.rhcloud.com/api/crews/";
-
     private final String TAG = "CREW";
 
     ArrayList<Crew> m_crews;
 
-
     public CrewRepository() {
-
     }
 
     public void loadAll(String id) {
         m_crews = new ArrayList<Crew>();
         String result = "";
         try {
-            if(id!=null){
-                result = getContent(URL+ "/user/" + id);
-            }else {
+            if (id != null) {
+                result = getContent(URL + "/user/" + id);
+            } else {
                 result = getContent(URL);
             }
             if (result == null) return;
 
             JSONArray array = new JSONArray(result);
-            Log.d("TAGGELITAG", "loadAll: " +array);
+            Log.d(TAG, "loadAll: " + array);
             for (int i = 0; i < array.length(); i++) {
 
                 JSONObject d = array.getJSONObject(i);
@@ -58,7 +54,6 @@ public class CrewRepository implements ICRUDRepository<Crew> {
                 String crewId = d.getString("_id");
                 String crewName = d.getString("name");
                 String crewImgUrl = d.getString("crewImgUrl");
-
 
                 JSONObject JSONleader = d.getJSONObject("leader");
 
@@ -86,8 +81,7 @@ public class CrewRepository implements ICRUDRepository<Crew> {
                 ArrayList<CrewGameSuggestion> games = new ArrayList<>();
                 for (int v = 0; v < JSONGames.length(); v++) {
                     String gsId = JSONGames.getJSONObject(v).getString("_id");
-                    String dateString  = JSONGames.getJSONObject(v).getString("expiration");
-
+                    String dateString = JSONGames.getJSONObject(v).getString("expiration");
 
                     JSONObject jsonGame = JSONGames.getJSONObject(v).getJSONObject("game");
                     String gameTitle = jsonGame.getString("title");
@@ -96,19 +90,18 @@ public class CrewRepository implements ICRUDRepository<Crew> {
 
                     Game game = new Game(gameTitle, gameInfo, coverURL);
 
-                   JSONObject jsonPlatform = JSONGames.getJSONObject(v).getJSONObject("platform");
+                    JSONObject jsonPlatform = JSONGames.getJSONObject(v).getJSONObject("platform");
                     String pfName = jsonPlatform.getString("name");
                     int price = jsonPlatform.getInt("price");
 
                     Platform platform = new Platform(pfName, price);
 
-
                     CrewGameSuggestion cgs = new CrewGameSuggestion(gsId, 0, dateString, game, platform);
 
                     games.add(cgs);
-
                 }
-/*
+
+                /*
                 JSONArray JSONMessages = d.getJSONArray("crewMessages");
                 ArrayList<CrewMessage> messages = new ArrayList<>();
                 for (int v = 0; v < JSONUsers.length(); v++) {
@@ -130,7 +123,6 @@ public class CrewRepository implements ICRUDRepository<Crew> {
 
                 m_crews.add(crew);
             }
-
         } catch (JSONException e) {
             Log.e(TAG,
                     "There was an error parsing the JSON", e);
@@ -182,7 +174,6 @@ public class CrewRepository implements ICRUDRepository<Crew> {
 
     @Override
     public void update(JSONObject jsonCrew, String crewId) throws Exception {
-
     }
 
     @Override
@@ -192,6 +183,5 @@ public class CrewRepository implements ICRUDRepository<Crew> {
 
     @Override
     public void delete(int id) throws Exception {
-
     }
 }
