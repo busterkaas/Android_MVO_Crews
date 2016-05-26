@@ -10,8 +10,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.buster.mycrews.BE.User;
+import com.example.buster.mycrews.BLL.GenerelLogic.UserLogic;
 import com.example.buster.mycrews.BLL.Manager.UserManager;
-import com.example.buster.mycrews.InitializeTasks.InitializeTaskUsers;
+import com.example.buster.mycrews.BLL.InitializeTasks.InitializeTaskUsers;
 import com.example.buster.mycrews.UI.User.MyProfileActivity;
 
 import java.util.ArrayList;
@@ -21,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     User userLogin = null;
     private ArrayList<User> users;
     UserManager userManager;
+    UserLogic userLogic;
 
     EditText etUsername;
     EditText etPassword;
@@ -31,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         userManager = UserManager.getInstance();
+        userLogic = new UserLogic();
         getUsers();
 
         inputSettings();
@@ -87,11 +90,17 @@ public class MainActivity extends AppCompatActivity {
 
         boolean validUser = false;
         String myUsername = etUsername.getText().toString();
+        String myPassword = etPassword.getText().toString();
 
-        for (User u : users) {
-            if (u.getUserName().equals(myUsername)) {
-                userLogin = u;
-                validUser = true;
+        if(userLogic.validateUserInput(myUsername, myPassword)){
+
+            //Normally you would just try to recieve specific user from db based on username & password
+            //but for now we just compare username with all users in db and returns true if exists
+            for (User u : users) {
+                if (u.getUserName().equals(myUsername)) {
+                    userLogin = u;
+                    validUser = true;
+                }
             }
         }
 
@@ -103,19 +112,10 @@ public class MainActivity extends AppCompatActivity {
 
             startActivity(intent);
 
-
-            /*
-            userController = UserController.getInstance();
-            userController.userLogin(user);
-
-
-            Log.d("MOJN", "My id: " + user.getId());
-
-            Intent intent = new Intent(MainActivity.this, FindCrewActivity.class);
-            startActivity(intent);
-            */
         } else {
             Toast.makeText(getApplicationContext(), "Invalid username or password", Toast.LENGTH_LONG).show();
         }
     }
+
+
 }

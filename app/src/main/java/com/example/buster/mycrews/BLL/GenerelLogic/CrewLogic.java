@@ -1,6 +1,4 @@
-package com.example.buster.mycrews.BLL.Manager.GenerelLogic;
-
-import android.util.Log;
+package com.example.buster.mycrews.BLL.GenerelLogic;
 
 import com.example.buster.mycrews.BE.Crew;
 import com.example.buster.mycrews.BE.User;

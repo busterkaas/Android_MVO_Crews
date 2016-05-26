@@ -78,8 +78,4 @@ public class UserManager implements IManager<User> {
         return false;
     }
 
-
-
-
-
 }

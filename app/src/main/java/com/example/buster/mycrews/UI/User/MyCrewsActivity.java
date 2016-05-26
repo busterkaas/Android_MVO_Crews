@@ -10,7 +10,7 @@ import android.widget.TextView;
 import com.example.buster.mycrews.BE.Crew;
 import com.example.buster.mycrews.BE.User;
 import com.example.buster.mycrews.BLL.Manager.CrewManager;
-import com.example.buster.mycrews.InitializeTasks.InitializeTaskUserCrews;
+import com.example.buster.mycrews.BLL.InitializeTasks.InitializeTaskUserCrews;
 import com.example.buster.mycrews.MenuActivity;
 import com.example.buster.mycrews.R;
 import com.example.buster.mycrews.UI.Crew.CrewProfileActivity;

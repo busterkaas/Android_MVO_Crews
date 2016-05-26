@@ -10,7 +10,7 @@ import android.widget.ImageView;
 
 import com.example.buster.mycrews.BE.Crew;
 import com.example.buster.mycrews.BE.User;
-import com.example.buster.mycrews.BLL.Manager.ImageDownloader;
+import com.example.buster.mycrews.BLL.InitializeTasks.ImageDownloader;
 import com.example.buster.mycrews.UI.Crew.FindCrewActivity;
 import com.example.buster.mycrews.UI.User.MyCrewsActivity;
 import com.example.buster.mycrews.UI.User.MyProfileActivity;

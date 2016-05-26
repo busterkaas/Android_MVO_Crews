@@ -10,7 +10,7 @@ import android.widget.ImageButton;
 
 import com.example.buster.mycrews.BE.User;
 import com.example.buster.mycrews.BLL.Manager.UserManager;
-import com.example.buster.mycrews.InitializeTasks.InitializeTaskUserUpdate;
+import com.example.buster.mycrews.BLL.InitializeTasks.InitializeTaskUserUpdate;
 import com.example.buster.mycrews.MenuActivity;
 import com.example.buster.mycrews.R;
 

@@ -1,4 +1,4 @@
-package com.example.buster.mycrews.BLL.Manager;
+package com.example.buster.mycrews.BLL.InitializeTasks;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;

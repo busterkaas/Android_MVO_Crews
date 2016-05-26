@@ -12,7 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.buster.mycrews.BE.CrewGameSuggestion;
-import com.example.buster.mycrews.BLL.Manager.ImageDownloader;
+import com.example.buster.mycrews.BLL.InitializeTasks.ImageDownloader;
 import com.example.buster.mycrews.R;
 
 import java.util.ArrayList;
