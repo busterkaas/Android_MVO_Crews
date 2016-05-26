@@ -124,6 +124,7 @@ public class CrewProfileActivity extends MenuActivity {
     void setupCrewInfo(){
         crewName.setText(crew.getCrewName());
         crewLeader.setText(crew.getCrewLeader().getUserName());
+        downloadImage(crewImage,crew.getCrewImgUrl());
     }
 
 }
